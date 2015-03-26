@@ -10,6 +10,28 @@
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 
+# Python virtualenv stuff
+source /usr/local/bin/virtualenvwrapper.sh
+
+# cache pip-installed packages to avoid re-downloading
+export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
+
+# Homedir /bin
+export PATH=~/bin:$PATH
+
+# Decent editor
+export EDITOR=emacsclient
+
+# RBenv ruby stuff
+export PATH=$HOME/.rbenv/shims:$PATH
+export PATH=$HOME/.rbenv/bin:$PATH
+eval "$(rbenv init -)"
+# rbenv completion
+source ~/.rbenv/completions/rbenv.bash
+
+# Tmuxinator
+[ -e ~/bin/tmuxinator.bash ] && source ~/bin/tmuxinator.bash
+
 # Homebrew completion
 source `brew --repository`/Library/Contributions/brew_bash_completion.sh
 
@@ -84,23 +106,6 @@ PATH=$PATH:~/opt/clojure-contrib/launchers/bash
 alias clj=clj-env-dir
 PATH=$PATH:~/opt/leiningen
 
-# Python virtualenv stuff
-source /usr/local/bin/virtualenvwrapper.sh
-
-# Homedir /bin
-export PATH=~/bin:$PATH
-
-# Decent editor
-export EDITOR=emacsclient
-
-# RBenv ruby stuff
-export PATH=$HOME/.rbenv/shims:$PATH
-export PATH=$HOME/.rbenv/bin:$PATH
-eval "$(rbenv init -)"
-
-# Tmuxinator
-[ -e ~/bin/tmuxinator.bash ] && source ~/bin/tmuxinator.bash
-
 # MacTex
 export PATH=/usr/texbin:$PATH
 
@@ -111,6 +116,8 @@ export PATH=/usr/texbin:$PATH
 # AWS cli completion
 complete -C aws_completer aws
 
-if [ -e .bash_balanced ]; then
-    . .bash_balanced
+if [ -d .bash_company ]; then
+    for f in .bash_company/*; do
+        . $f
+    done
 fi
