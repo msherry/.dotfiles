@@ -1,0 +1,42 @@
+# ~/.tmuxinator/balanced.yml
+
+name: balanced
+root: ~/pp/balanced
+
+# Optional tmux socket
+# socket_name: foo
+
+# Runs before everything. Use it to start daemons etc.
+# pre: sudo /etc/rc.d/mysqld start
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+windows:
+  - confucius:
+      layout: main-vertical
+      panes:
+        - confucius:
+          - cd ~/pp/confucius/
+          - workon confucius
+        - api:
+          - cd ~/pp/cookbooks/role-balanced-api/
+        - worker:
+          - cd ~/pp/cookbooks/role-balanced-worker/
+  - nose:
+    - cd ~/pp/balanced
+    - workon balanced
+  - remote-shell:
+    - sash bdir-live-prod-xeoj6r-10-3-5-161
+    - tmux attach -t bal
+  - db-master:
+    - sash bdir-live-prod-xeoj6r-10-3-5-161
+    # - ssh live-db-01
+  - db-slave:
+    - ssh live-db-03
