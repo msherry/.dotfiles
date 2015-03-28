@@ -116,8 +116,8 @@ export PATH=/usr/texbin:$PATH
 # AWS cli completion
 complete -C aws_completer aws
 
-if [ -d .bash_company ]; then
-    for f in .bash_company/*; do
+if [ -e ~/.bash_company ]; then
+    for f in ~/.bash_company/*; do
         . $f
     done
 fi
