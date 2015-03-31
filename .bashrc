@@ -62,7 +62,7 @@ export -f git_branch
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-*color|screen-*color)
-        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+        PS1='${debian_chroot:+($debian_chroot)}\[\e[01;32m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\e[32m$(git_branch)\[\e[00m\]\$ '
         ;;
     *)
         PS1='\u@\h:\w$(git_branch)\$ '
@@ -121,3 +121,34 @@ if [ -e ~/.bash_company ]; then
         . $f
     done
 fi
+
+# Utils
+
+# Ready-to-copy escape sequences for colors -
+# https://wiki.archlinux.org/index.php/Color_Bash_Prompt
+colors() {
+	local fgc bgc vals seq0
+
+	printf "Color escapes are %s\n" '\e[${value};...;${value}m'
+	printf "Values 30..37 are \e[33mforeground colors\e[m\n"
+	printf "Values 40..47 are \e[43mbackground colors\e[m\n"
+	printf "Value  1 gives a  \e[1mbold-faced look\e[m\n\n"
+
+	# foreground colors
+	for fgc in {30..37}; do
+		# background colors
+		for bgc in {40..47}; do
+			fgc=${fgc#37} # white
+			bgc=${bgc#40} # black
+
+			vals="${fgc:+$fgc;}${bgc}"
+			vals=${vals%%;}
+
+			seq0="${vals:+\e[${vals}m}"
+			printf "  %-9s" "${seq0:-(default)}"
+			printf " ${seq0}TEXT\e[m"
+			printf " \e[${vals:+${vals+$vals;}}1mBOLD\e[m"
+		done
+		echo; echo
+	done
+}
