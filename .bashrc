@@ -36,7 +36,8 @@ source ~/.rbenv/completions/rbenv.bash
 source `brew --repository`/Library/Contributions/brew_bash_completion.sh
 
 # For berks
-export SSL_CERT_FILE="$(brew --prefix)/share/ca-bundle.crt"
+# Currently breaks some homebrew installs, so disabled
+#export SSL_CERT_FILE="$(brew --prefix)/share/ca-bundle.crt"
 
 # don't put duplicate lines in the history. See bash(1) for more options
 export HISTCONTROL=ignoredups
@@ -61,7 +62,7 @@ export -f git_branch
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-*color|screen-*color)
+    xterm-*color|screen-color)
         PS1='${debian_chroot:+($debian_chroot)}\[\e[01;32m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\e[32m$(git_branch)\[\e[00m\]\$ '
         ;;
     *)
