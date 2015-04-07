@@ -124,6 +124,12 @@ if [ -e ~/.bash_company ]; then
     done
 fi
 
+if [ -e ~/.completions ]; then
+    for f in ~/.completions/*; do
+        . $f
+    done
+fi
+
 # Utils
 
 # Ready-to-copy escape sequences for colors -
