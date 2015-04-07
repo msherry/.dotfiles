@@ -334,6 +334,8 @@ __git_tags ()
 # __git_refs accepts 0, 1 (to pass to __gitdir), or 2 arguments
 # presence of 2nd argument means use the guess heuristic employed
 # by checkout for tracking branches
+
+# Marc: updated with http://stackoverflow.com/questions/6623649/disable-auto-completion-of-remote-branches-in-git-bash
 __git_refs ()
 {
 	local i hash dir="$(__gitdir "${1-}")" track="${2-}"
@@ -350,26 +352,26 @@ __git_refs ()
 				if [ -e "$dir/$i" ]; then echo $i; fi
 			done
 			format="refname:short"
-			refs="refs/tags refs/heads refs/remotes"
+			refs="refs/heads"
 			;;
 		esac
 		git --git-dir="$dir" for-each-ref --format="%($format)" \
 			$refs
-		if [ -n "$track" ]; then
-			# employ the heuristic used by git checkout
-			# Try to find a remote branch that matches the completion word
-			# but only output if the branch name is unique
-			local ref entry
-			git --git-dir="$dir" for-each-ref --shell --format="ref=%(refname:short)" \
-				"refs/remotes/" | \
-			while read -r entry; do
-				eval "$entry"
-				ref="${ref#*/}"
-				if [[ "$ref" == "$cur"* ]]; then
-					echo "$ref"
-				fi
-			done | sort | uniq -u
-		fi
+		# if [ -n "$track" ]; then
+		# 	# employ the heuristic used by git checkout
+		# 	# Try to find a remote branch that matches the completion word
+		# 	# but only output if the branch name is unique
+		# 	local ref entry
+		# 	git --git-dir="$dir" for-each-ref --shell --format="ref=%(refname:short)" \
+		# 		"refs/remotes/" | \
+		# 	while read -r entry; do
+		# 		eval "$entry"
+		# 		ref="${ref#*/}"
+		# 		if [[ "$ref" == "$cur"* ]]; then
+		# 			echo "$ref"
+		# 		fi
+		# 	done | sort | uniq -u
+		# fi
 		return
 	fi
 	case "$cur" in
