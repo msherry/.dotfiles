@@ -63,7 +63,7 @@ export -f git_branch
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-*color|screen-color)
+    xterm-color-XXX|screen-color-XXX) # XXX because this actually sucks
         PS1='${debian_chroot:+($debian_chroot)}\[\e[01;32m\]\u@\h\[\e[00m\]:\[\e[01;34m\]\w\e[32m$(git_branch)\[\e[00m\]\$ '
         ;;
     *)
@@ -124,8 +124,8 @@ if [ -e ~/.bash_company ]; then
     done
 fi
 
-if [ -e ~/.completions ]; then
-    for f in ~/.completions/*; do
+if [ -e ~/.common ]; then
+    for f in ~/.common/*; do
         . $f
     done
 fi
