@@ -2,7 +2,7 @@
 # Colorizes the ouput using sed
 # Keeps the exit code of mvn and returns it to allow chaining of commands
 
-SED=`which gsed`                # Mac OS X
+SED=`which gsed`                # Mac OS X - needed because '|' is a GNU extension
 if [ -z $SED ]; then
     SED=`which sed`             # Linux
 fi
