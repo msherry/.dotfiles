@@ -38,3 +38,6 @@ windows:
   - knox:
     - cd ~/pp/knox-balanced
     - workon knox
+  - pysec:
+    - cd ~/projects/finance/pysec
+    - workon pysec
