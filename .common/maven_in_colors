@@ -2,7 +2,7 @@
 # Colorizes the ouput using sed
 # Keeps the exit code of mvn and returns it to allow chaining of commands
 
-SED=`which gsed`                # Mac OS X
+SED=`which gsed`                # Mac OS X - needed because '|' is a GNU extension
 if [ -z $SED ]; then
     SED=`which sed`             # Linux
 fi
@@ -13,7 +13,12 @@ mvn-in-colors() {
   local color_red=$(tput bold)$(tput setaf 1)
   local color_green=$(tput bold)$(tput setaf 2)
   local color_yellow=$(tput bold)$(tput setaf 3)
+  local color_blue=$(tput bold)$(tput setaf 4)
+  local color_pink=$(tput bold)$(tput setaf 5)
+  local color_aqua=$(tput bold)$(tput setaf 6)
   local color_white=$(tput bold)$(tput setaf 7)
+  local color_grey=$(tput bold)$(tput setaf 8)
+  local color_salmon=$(tput bold)$(tput setaf 9)
   local color_reset=$(tput sgr0)
 
   # Make sure formatting is reset
@@ -24,7 +29,7 @@ mvn-in-colors() {
 
   # Filter mvn output using sed
   (command mvn $@ ; echo $? > $tmp_file) | $SED \
-    -e "s/\(.*-\{55\}\+$\|.*\[INFO\] Scanning for projects.*\|.*\[INFO\] Building.*\|^Running .*\|^ T E S T S$\|^Results.*\)/${color_white}\1${color_reset}/g" \
+    -e "s/\(.*-\{55\}\+$\|.*\[INFO\] Scanning for projects.*\|.*\[INFO\] Building.*\|^Running .*\|^ T E S T S$\|^Results.*\)/${color_aqua}\1${color_reset}/g" \
     -e "s/\(.*\[INFO\] BUILD SUCCESS$\|^Tests run:.*Failures: 0.*Errors: 0.*Skipped: 0.*\)/${color_green}\1${color_reset}/g" \
     -e "s/\(.*\[WARNING].*\|^NOTE: Maven is executing in offline mode\.\|^Tests run:.*Failures: 0, Errors: 0, Skipped: [^0].*\)/${color_yellow}\1${color_reset}/g" \
     -e "s/\(.*\[INFO\] BUILD FAILURE\|.* <<< FAILURE!$\|.* <<< ERROR!$\|^Tests in error:.*\|^Tests run:.*Failures: [^0].*\|^Tests run:.*Errors: [^0].*\)/${color_red}\1${color_reset}/g"
