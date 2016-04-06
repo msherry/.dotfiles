@@ -33,7 +33,11 @@ source ~/.rbenv/completions/rbenv.bash
 [ -e ~/bin/tmuxinator.bash ] && source ~/bin/tmuxinator.bash
 
 # Homebrew completion
-source `brew --repository`/Library/Contributions/brew_bash_completion.sh
+if [ -f `brew --repository`/Library/Contributions/brew_bash_completion.sh ]; then
+    source `brew --repository`/Library/Contributions/brew_bash_completion.sh
+elif [ -f $(brew --prefix)/etc/bash_completion ]; then
+    source $(brew --prefix)/etc/bash_completion
+fi
 
 # For berks
 # Currently breaks some homebrew installs, so disabled
