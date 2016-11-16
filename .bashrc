@@ -161,3 +161,7 @@ colors() {
 		echo; echo
 	done
 }
+
+# Go-related
+export GOROOT=~/go
+export PATH=$GOROOT/bin:$PATH
