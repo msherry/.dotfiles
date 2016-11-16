@@ -21,14 +21,56 @@ root: ~/code/pinboard
 
 windows:
   - devapp:
-      layout: main-horizontal
+      # Layout is a modified main-horizontal: http://stackoverflow.com/a/9976282/52550
+      layout: c2c7,182x43,0,0[182x24,0,0,0,182x18,0,25{90x18,0,25[90x9,0,25,5,90x8,0,35,18],91x18,91,25,6}]
       panes:
         - devapp:
             - ssh devapp
-            - cd code/pinboard
-            - tmux attach || make devserver
+            - tmux attach -t devserver || make devserver
+        - fetcher:
+            - SECS=$(($RANDOM % 600)); echo "Sleeping for $SECS seconds before initial fetch"; sleep $SECS; SECS=600; while [ 1 ]; do git fetch; echo "Sleeping for $SECS seconds..."; sleep $SECS; done
         - watcher:
             - source ~/.dotfiles/.bash_company/bash_pinterest
             - watcher
         - touch:
-            - echo 'Ready to touch'
+            - workon pinboard
+  - pinboard:
+    - workon pinboard
+  - optimus:
+    - cd ~/code/optimus
+    - workon optimus
+  - patio:
+      layout: c2c7,182x43,0,0[182x24,0,0,0,182x18,0,25{90x18,0,25[90x9,0,25,5,90x8,0,35,18],91x18,91,25,6}]
+      panes:
+        - devapp:
+            - cd ~/code/patio
+            - ssh devapp-ads
+            - cd ~/code/patio
+            - tmux attach -t ads || tmux new -s ads
+        - fetcher:
+            - SECS=$(($RANDOM % 600)); echo "Sleeping for $SECS seconds before initial fetch"; sleep $SECS; SECS=600; while [ 1 ]; do git fetch; echo "Sleeping for $SECS seconds..."; sleep $SECS; done
+        - watcher:
+            - cd ~/code/patio
+            - source ~/.dotfiles/.bash_company/bash_pinterest
+            - watcher-ads
+        - touch:
+            - cd ~/code/patio
+  - goldpick:
+      layout: c2c7,182x43,0,0[182x24,0,0,0,182x18,0,25{90x18,0,25[90x9,0,25,5,90x8,0,35,18],91x18,91,25,6}]
+      panes:
+        - devapp:
+            - cd ~/code/optimus
+            - ssh -L9995:localhost:9995 devapp
+            - cd ~/code/optimus
+            - tmux attach -t optimus || tmux new -s optimus
+        - fetcher:
+            - cd ~/code/optimus
+            - SECS=$(($RANDOM % 600)); echo "Sleeping for $SECS seconds before initial fetch"; sleep $SECS; SECS=600; while [ 1 ]; do git fetch; echo "Sleeping for $SECS seconds..."; sleep $SECS; done
+        - watcher:
+            - cd ~/code/optimus
+            - source ~/.dotfiles/.bash_company/bash_pinterest
+            - watcher
+        - touch:
+            - cd ~/code/optimus
+  - offlineimap:
+      offlineimap
