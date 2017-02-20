@@ -73,4 +73,4 @@ windows:
         - touch:
             - cd ~/code/optimus
   - offlineimap:
-      offlineimap
+      offlineimap-runner.sh
