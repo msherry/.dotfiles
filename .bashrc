@@ -110,7 +110,12 @@ alias clj=clj-env-dir
 PATH=$PATH:~/opt/leiningen
 
 # MacTex
-export PATH=/usr/texbin:$PATH
+if [ -d /usr/texbin ]; then
+    export PATH=/usr/texbin:$PATH
+fi
+if [ -d /Library/TeX/texbin ]; then
+    export PATH=/Library/TeX/texbin:$PATH
+fi
 
 # http://www.sontek.net/blog/2010/12/28/tips_and_tricks_for_the_python_interpreter.html
 # and https://github.com/sontek/dotfiles/blob/master/_pythonrc.py
