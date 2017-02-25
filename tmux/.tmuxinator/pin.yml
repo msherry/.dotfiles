@@ -30,7 +30,7 @@ windows:
         - fetcher:
             - SECS=$(($RANDOM % 600)); echo "Sleeping for $SECS seconds before initial fetch"; sleep $SECS; SECS=600; while [ 1 ]; do git fetch; echo "Sleeping for $SECS seconds..."; sleep $SECS; done
         - watcher:
-            - source ~/.dotfiles/.bash_company/bash_pinterest
+            - source ~/.bash_company/bash_pinterest
             - watcher
         - touch:
             - workon pinboard
@@ -51,7 +51,7 @@ windows:
             - SECS=$(($RANDOM % 600)); echo "Sleeping for $SECS seconds before initial fetch"; sleep $SECS; SECS=600; while [ 1 ]; do git fetch; echo "Sleeping for $SECS seconds..."; sleep $SECS; done
         - watcher:
             - cd ~/code/patio
-            - source ~/.dotfiles/.bash_company/bash_pinterest
+            - source ~/.bash_company/bash_pinterest
             - watcher-ads
         - touch:
             - cd ~/code/patio
@@ -68,7 +68,7 @@ windows:
             - SECS=$(($RANDOM % 600)); echo "Sleeping for $SECS seconds before initial fetch"; sleep $SECS; SECS=600; while [ 1 ]; do git fetch; echo "Sleeping for $SECS seconds..."; sleep $SECS; done
         - watcher:
             - cd ~/code/optimus
-            - source ~/.dotfiles/.bash_company/bash_pinterest
+            - source ~/.bash_company/bash_pinterest
             - watcher
         - touch:
             - cd ~/code/optimus
