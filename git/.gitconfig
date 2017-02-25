@@ -1,0 +1,9 @@
+[user]
+	email = msherry@gmail.com
+	name = Marc Sherry
+[push]
+	default = simple
+[core]
+	excludesfile = /Users/marc/.gitignore_global
+[rerere]
+	enabled = true
