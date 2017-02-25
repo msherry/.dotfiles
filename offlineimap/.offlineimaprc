@@ -1,0 +1,70 @@
+# -*- mode: conf-unix; -*-
+
+# See /usr/local/etc/offlineimap.conf.default for a full listing of options
+
+[general]
+# List of accounts to be synced, separated by a comma.
+accounts = pinterest
+socktimeout = 60
+fsync = false
+pythonfile = ~/.offlineimap.py
+
+[Account pinterest]
+# Identifier for the local repository; e.g. the maildir to be synced via IMAP.
+localrepository = pinterest-local
+
+# Identifier for the remote repository; i.e. the actual IMAP, usually non-local.
+remoterepository = pinterest-remote
+
+# Status cache. Default is plain, which eventually becomes huge and slow.
+status_backend = sqlite
+
+# This header is where labels go.  Usually you will be fine
+# with default value (X-Keywords), but in case you want it
+# different, here we go:
+labelsheader = X-Keywords
+
+# Specifies if we want to sync GMail labels with the local repository.
+# Effective only for GMail IMAP repositories.
+#
+# Non-ASCII characters in labels are badly handled or won't work at all.
+synclabels = yes
+
+autorefresh = 5
+quick = 5
+presynchook = ~/bin/maildir-notmuch-sync pre ~/Maildir/marc@pinterest.com
+postsynchook = ~/bin/maildir-notmuch-sync post ~/Maildir/marc@pinterest.com; emacsclient --eval '(display-time-update)' > /dev/null
+
+
+[Repository pinterest-local]
+# Currently, offlineimap only supports maildir and IMAP for local repositories.
+type = GmailMaildir
+
+# Where should the mail be placed?
+localfolders = ~/Maildir/marc@pinterest.com
+folderfilter = lambda foldername: foldername not in {
+             }
+nametrans = lambda foldername: {
+    # 'Inbox': 'INBOX',
+    'flagged': '[Gmail]/Starred',
+    'archive': '[Gmail]/All Mail'}.get(foldername, foldername)
+
+
+[Repository pinterest-remote]
+# Remote repos can be IMAP or Gmail, the latter being a preconfigured IMAP.
+type = Gmail
+remoteuser = marc@pinterest.com
+# remotepass is an option here, but remotepasseval is better
+remotepasseval = get_password_emacs("marc@pinterest.com", "smtp.gmail.com", "587")
+maxconnections = 5
+singlethreadperfolder = no
+
+folderfilter = lambda foldername: foldername not in {
+    'Crashlytics', 'Workflows', '[Gmail]/Trash', '[Gmail]/Spam', 'TODO', 'Flawless',
+    'Specs', 'Pinlater'}
+nametrans = lambda foldername: {
+    # 'INBOX': 'Inbox',
+    '[Gmail]/Starred': 'flagged',
+    '[Gmail]/All Mail': 'archive'}.get(foldername, foldername)
+
+sslcacertfile = /usr/local/etc/openssl/cert.pem
