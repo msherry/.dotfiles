@@ -5,7 +5,7 @@ TIMEOUT=gtimeout
 # The file at this location will be updated by an external process (e.g. emacs)
 # to indicate that a sync is required
 UPDATE_FILE_PATH=/tmp/offlineimap_sync_required
-SECS_BETWEEN_SYNCS=300
+SECS_BETWEEN_SYNCS=$(( 4 * 60 ))
 FAILURE_WAIT_SECS=60
 
 LAST_SYNC_TIME=0
@@ -105,8 +105,8 @@ while [ 1 ]; do
     done
     # Sync. If we succeed, updated our last sync'd time so we schedule a new
     # sync in SECS_BETWEEN_SYNCS seconds. If we fail, update our last sync'd
-    # time to FAILURE_WAIT_SECS seconds before a new sync is due, so we try again shortly (but
-    # not immediately).
+    # time to FAILURE_WAIT_SECS seconds before a new sync is due, so we try
+    # again shortly (but not immediately).
     do_sync && LAST_SYNC_TIME=$(epoch) || LAST_SYNC_TIME=$(( $(epoch) - $SECS_BETWEEN_SYNCS + $FAILURE_WAIT_SECS ))
     sleep 5
 done
