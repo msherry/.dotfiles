@@ -16,9 +16,6 @@ localrepository = pinterest-local
 # Identifier for the remote repository; i.e. the actual IMAP, usually non-local.
 remoterepository = pinterest-remote
 
-# Status cache. Default is plain, which eventually becomes huge and slow.
-status_backend = sqlite
-
 # This header is where labels go.  Usually you will be fine
 # with default value (X-Keywords), but in case you want it
 # different, here we go:
@@ -37,7 +34,6 @@ postsynchook = ~/bin/maildir-notmuch-sync post ~/Maildir/marc@pinterest.com; ema
 
 
 [Repository pinterest-local]
-# Currently, offlineimap only supports maildir and IMAP for local repositories.
 type = GmailMaildir
 
 # Where should the mail be placed?
@@ -56,7 +52,7 @@ type = Gmail
 remoteuser = marc@pinterest.com
 # remotepass is an option here, but remotepasseval is better
 remotepasseval = get_password_emacs("marc@pinterest.com", "smtp.gmail.com", "587")
-maxconnections = 5
+maxconnections = 1
 singlethreadperfolder = no
 
 folderfilter = lambda foldername: foldername not in {
