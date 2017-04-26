@@ -51,6 +51,7 @@ bioinformatics
 Bloomingdale's
 bookmarked
 braintree
+Breakout
 brokerages
 buildstep
 buyable
@@ -67,6 +68,7 @@ Chao
 chargeback
 CheckConstraint
 ci
+Clojure
 cloudeng
 cobertura
 codebase
@@ -86,6 +88,7 @@ cromulent
 cron
 Crowdhoster
 CSLB
+csv
 curated
 datastructure
 db
@@ -93,6 +96,7 @@ deassociate
 deassociating
 debitable
 demandware
+Demeter
 descripty
 deserialize
 deserializer
@@ -127,6 +131,7 @@ eventing
 eventize
 experian
 Experian's
+Eyedrops
 fab
 Factorize
 FBO
@@ -134,6 +139,7 @@ FIXME
 fraudsters
 fraudy
 frontend
+fundable
 Funder's
 fundersclub
 FundingDestination
@@ -171,7 +177,9 @@ horseshit
 http
 https
 IAM
+idempotency
 ids
+IDs
 iff
 imperator
 imperators
@@ -316,7 +324,7 @@ recognise
 Redis
 refactor
 refactored
-REFILE
+refile
 Reflektive
 refundable
 regularization
