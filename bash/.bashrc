@@ -11,7 +11,9 @@ export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 
 # Python virtualenv stuff
-source /usr/local/bin/virtualenvwrapper.sh
+if [ -e /usr/local/bin/virtualenvwrapper.sh ]; then
+    source /usr/local/bin/virtualenvwrapper.sh
+fi
 
 # cache pip-installed packages to avoid re-downloading
 export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
@@ -23,11 +25,15 @@ export PATH=~/bin:$PATH
 export EDITOR=emacsclient
 
 # RBenv ruby stuff
-export PATH=$HOME/.rbenv/shims:$PATH
-export PATH=$HOME/.rbenv/bin:$PATH
-eval "$(rbenv init -)"
-# rbenv completion
-source ~/.rbenv/completions/rbenv.bash
+if [ -d $HOME/.rbenv ]; then
+    export PATH=$HOME/.rbenv/shims:$PATH
+    export PATH=$HOME/.rbenv/bin:$PATH
+    eval "$(rbenv init -)"
+    # rbenv completion
+    if [ -e ~/.rbenv/completions/rbenv.bash ]; then
+        source ~/.rbenv/completions/rbenv.bash
+    fi
+fi
 
 # Tmuxinator
 [ -e ~/bin/tmuxinator.bash ] && source ~/bin/tmuxinator.bash

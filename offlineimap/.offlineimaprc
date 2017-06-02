@@ -4,17 +4,17 @@
 
 [general]
 # List of accounts to be synced, separated by a comma.
-accounts = pinterest
+accounts = dropbox
 socktimeout = 60
 fsync = false
 pythonfile = ~/.offlineimap.py
 
-[Account pinterest]
+[Account dropbox]
 # Identifier for the local repository; e.g. the maildir to be synced via IMAP.
-localrepository = pinterest-local
+localrepository = dropbox-local
 
 # Identifier for the remote repository; i.e. the actual IMAP, usually non-local.
-remoterepository = pinterest-remote
+remoterepository = dropbox-remote
 
 # This header is where labels go.  Usually you will be fine
 # with default value (X-Keywords), but in case you want it
@@ -29,15 +29,15 @@ synclabels = yes
 
 autorefresh = 5
 quick = 5
-presynchook = ~/bin/maildir-notmuch-sync pre ~/Maildir/marc@pinterest.com
-postsynchook = ~/bin/maildir-notmuch-sync post ~/Maildir/marc@pinterest.com; emacsclient --eval '(display-time-update)' > /dev/null
+presynchook = ~/bin/maildir-notmuch-sync pre ~/Maildir/msherry@dropbox.com
+postsynchook = ~/bin/maildir-notmuch-sync post ~/Maildir/msherry@dropbox.com; emacsclient --eval '(display-time-update)' > /dev/null
 
 
-[Repository pinterest-local]
+[Repository dropbox-local]
 type = GmailMaildir
 
 # Where should the mail be placed?
-localfolders = ~/Maildir/marc@pinterest.com
+localfolders = ~/Maildir/msherry@dropbox.com
 folderfilter = lambda foldername: foldername not in {
              }
 nametrans = lambda foldername: {
@@ -46,12 +46,12 @@ nametrans = lambda foldername: {
     'archive': '[Gmail]/All Mail'}.get(foldername, foldername)
 
 
-[Repository pinterest-remote]
+[Repository dropbox-remote]
 # Remote repos can be IMAP or Gmail, the latter being a preconfigured IMAP.
 type = Gmail
-remoteuser = marc@pinterest.com
+remoteuser = msherry@dropbox.com
 # remotepass is an option here, but remotepasseval is better
-remotepasseval = get_password_emacs("marc@pinterest.com", "smtp.gmail.com", "587")
+remotepasseval = get_password_emacs("msherry@dropbox.com", "imap.gmail.com", "993")
 maxconnections = 1
 singlethreadperfolder = no
 
