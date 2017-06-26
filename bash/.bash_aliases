@@ -1,3 +1,5 @@
+# -*- mode: sh; -*-
+
 # enable color support of ls and also add handy aliases
 if [ "$TERM" != "dumb" ]; then
     #eval "`dircolors -b`"
@@ -16,3 +18,5 @@ alias l='ls -CF'
 alias rmpyc='find . -name \*.pyc -print0 | xargs -0 rm'
 
 alias yolo='fab -R prod up -f scripts/fabfile.py'
+
+alias mux='tmuxinator'

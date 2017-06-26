@@ -1,6 +1,6 @@
 # ~/.tmuxinator/db.yml
 
-name: pin
+name: db
 root: ~/src/server
 
 # Optional tmux socket
@@ -10,7 +10,7 @@ root: ~/src/server
 # pre: sudo /etc/rc.d/mysqld start
 
 # Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
-# pre_window: rbenv shell 2.0.0-p247
+# pre_window: workon server
 
 # Pass command line options to tmux. Useful for specifying a different tmux.conf.
 # tmux_options: -f ~/.tmux.mac.conf
@@ -33,8 +33,30 @@ windows:
             - SECS=$(($RANDOM % 600)); echo "Sleeping for $SECS seconds before initial fetch"; sleep $SECS; SECS=600; while [ 1 ]; do git fetch; echo "Sleeping for $SECS seconds..."; sleep $SECS; done
         - watcher:
             - cd cd ~/src/server/build_tools
-            - while [ 1 ]; do mbzl gen .; sleep 5; done
-        - touch:
-            - echo hi
+            - while [ 1 ]; do echo "start..."; mbzl gen .; echo "done."; echo; sleep 5; done
+        - bash:
+            - cd ~/src/server
+            - workon server
+  - vagrant-osx1012:
+      layout: c2c7,182x43,0,0[182x24,0,0,0,182x18,0,25{90x18,0,25[90x9,0,25,5,90x8,0,35,18],91x18,91,25,6}]
+      panes:
+        - vm:
+            - cd ~/src/client
+            - . ~/.virtualenvs/client/bin/activate
+            - vagrant up osx1012
+            - vagrant ssh osx1012
+            - cd ~/client
+        - fetcher:
+            - cd ~/src/client
+            - SECS=$(($RANDOM % 600)); echo "Sleeping for $SECS seconds before initial fetch"; sleep $SECS; SECS=600; while [ 1 ]; do git fetch; echo "Sleeping for $SECS seconds..."; sleep $SECS; done
+        - watcher:
+            - cd ~/src/client
+            - SECS=60; echo "Sleeping for $SECS seconds before syncing"; sleep $SECS
+            - vagrant rsync-auto osx1012
+        - bash:
+            - cd ~/src/client
+            - . ~/.virtualenvs/client/bin/activate
   - offlineimap:
       offlineimap-runner.sh
+  - bash:
+      - cd ~/src/server

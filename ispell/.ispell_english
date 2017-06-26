@@ -45,6 +45,7 @@ BalancedPayments
 banhammer
 barfs
 Bayes
+beachball
 berks
 binned
 bioinformatics
@@ -115,7 +116,11 @@ docs
 downtime
 doxymacs
 dropbox
+Dropboxer
+dropstop
 ds
+DSP
+dtrace
 dunning
 ECALS
 ecommerce
@@ -335,6 +340,7 @@ requeue
 requeueing
 reseating
 RESTful
+rishabh
 roadmap
 roundtrip
 sans
@@ -366,6 +372,7 @@ ssh
 stackoverflow
 stakeholders
 stats
+str
 StrictHostKeyChecking
 StringIO
 struct
@@ -375,6 +382,7 @@ subdicts
 subdomains
 submerchant
 subresource
+sudo
 Suede
 super's
 Swarovski
@@ -432,9 +440,11 @@ validator
 validators
 vantiv
 var
+variabilities
 versioning
 vim
 virtualenv
+VM
 VPC
 WAYFAIR
 webhook
