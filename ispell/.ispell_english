@@ -51,6 +51,7 @@ binned
 bioinformatics
 Bloomingdale's
 bookmarked
+bool
 braintree
 Breakout
 brokerages
@@ -96,6 +97,7 @@ db
 deassociate
 deassociating
 debitable
+defaultdicts
 demandware
 Demeter
 descripty
@@ -121,6 +123,8 @@ dropstop
 ds
 DSP
 dtrace
+DTrace
+DTraceStat
 dunning
 ECALS
 ecommerce
@@ -142,6 +146,7 @@ fab
 Factorize
 FBO
 FIXME
+flycheck
 fraudsters
 fraudy
 frontend
@@ -191,12 +196,14 @@ imperator
 imperators
 incentivized
 incentivizes
+int
 invoiceable
 iOS
 ip
 iPad
 iPhone
 IronSights
+Iterable
 Javascript
 jenkins
 Ji
@@ -265,6 +272,7 @@ ok
 oms
 onboard
 onboarding
+ops
 Optimus
 overreacted
 overreaction
@@ -360,6 +368,7 @@ Shopify
 shopify's
 SIGHUP
 sigils
+SIGINT
 SIGTTOU
 Slickguns
 snafus
@@ -371,7 +380,9 @@ squatter's
 ssh
 stackoverflow
 stakeholders
+stat
 stats
+stdout
 str
 StrictHostKeyChecking
 StringIO
@@ -385,6 +396,8 @@ subresource
 sudo
 Suede
 super's
+supergiant's
+supergiants's
 Swarovski
 synology
 sysconfig
@@ -410,6 +423,7 @@ tz
 unblacklisting
 unbreak
 uncomplicated
+unconsumed
 uncracked
 underpaying
 underwritten
@@ -441,6 +455,7 @@ validators
 vantiv
 var
 variabilities
+venv'd
 versioning
 vim
 virtualenv

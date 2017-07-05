@@ -1,3 +1,4 @@
 marc.py
 .pycheckers
 *_flymake.py
+.mypy_cache
