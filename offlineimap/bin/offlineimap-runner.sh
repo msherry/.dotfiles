@@ -15,14 +15,14 @@ SECS_UNTIL_SCHEDULED=
 touch $UPDATE_FILE_PATH
 
 # Return the current date/time in seconds since the epoch
-function epoch()
+epoch()
 {
     date '+%s'
 }
 
 # How many seconds remain until a regularly-scheduled sync should be
 # performed. If <= 0, then we need to sync
-function secs_until_scheduled_sync()
+secs_until_scheduled_sync()
 {
     # http://stackoverflow.com/a/13864829/52550
     if [ -z ${LAST_SYNC_TIME+x} ]; then
@@ -30,7 +30,7 @@ function secs_until_scheduled_sync()
         return
     fi
     now=$(epoch)
-    echo $(( $LAST_SYNC_TIME + $SECS_BETWEEN_SYNCS - $now ))
+    echo $(( LAST_SYNC_TIME + SECS_BETWEEN_SYNCS - now ))
 }
 
 # Determine if a local update has happened since our last sync, requiring a new
@@ -40,7 +40,7 @@ function secs_until_scheduled_sync()
 # indicate that a sync is required. Make sure that the file is at least 30
 # seconds old, to account for the possibility of multiple updates being done in
 # quick succession.
-function updated()
+updated()
 {
     if [ ! -f $UPDATE_FILE_PATH ]; then
         echo "No update file found"
@@ -48,16 +48,16 @@ function updated()
     fi
 
     # TODO: This is BSD-specific. Linux would use `stat -c %Y`
-    file_update_time=`stat -f %m $UPDATE_FILE_PATH`
+    file_update_time=$(stat -f %m $UPDATE_FILE_PATH)
     now=$(epoch)
     # [ $file_update_time -gt $LAST_SYNC_TIME ] && \
     #     [ $file_update_time -lt $(( $now - 30 )) ] # At least 30 seconds have
     #                                                # elapsed since last update
-    if [ $file_update_time -le $LAST_SYNC_TIME ]; then
+    if [ "$file_update_time" -le $LAST_SYNC_TIME ]; then
         return 1
     fi
     # echo "Update detected"
-    if [ $file_update_time -lt $(( $now - 30 )) ]; then
+    if [ "$file_update_time" -lt $(( now - 30 )) ]; then
         # echo "... and it was at least 30 seconds ago"
         return 0
     fi
@@ -67,11 +67,11 @@ function updated()
 
 # Check for regularly-scheduled or force-update syncs, update
 # $SECS_UNTIL_SCHEDULED
-function should_sync()
+should_sync()
 {
     # Scheduled sync
-    SECS_UNTIL_SCHEDULED=`secs_until_scheduled_sync`
-    if [ $SECS_UNTIL_SCHEDULED -le 0 ]; then
+    SECS_UNTIL_SCHEDULED=$(secs_until_scheduled_sync)
+    if [ "$SECS_UNTIL_SCHEDULED" -le 0 ]; then
         echo "Scheduled sync"
         return 0
     fi
@@ -84,7 +84,7 @@ function should_sync()
     return 1
 }
 
-function do_sync()
+do_sync()
 {
     # Trailing `echo` command because offlineimap often returns some random
     # error when it finishes syncing
@@ -92,10 +92,10 @@ function do_sync()
     $TIMEOUT --foreground --signal=KILL 4m bash -c 'offlineimap -o'
 }
 
-while [ 1 ]; do
+while true; do
     last_min_remaining=0
     while ! should_sync; do
-        min_remaining=$(( ( $SECS_UNTIL_SCHEDULED + 59 ) / 60 ))
+        min_remaining=$(( ( SECS_UNTIL_SCHEDULED + 59 ) / 60 ))
         if [ $min_remaining -ne $last_min_remaining ]; then
             [ $min_remaining = 1 ] && noun="minute" || noun="minutes"
             echo "Next scheduled refresh in $min_remaining $noun..."
@@ -107,6 +107,6 @@ while [ 1 ]; do
     # sync in SECS_BETWEEN_SYNCS seconds. If we fail, update our last sync'd
     # time to FAILURE_WAIT_SECS seconds before a new sync is due, so we try
     # again shortly (but not immediately).
-    do_sync && LAST_SYNC_TIME=$(epoch) || LAST_SYNC_TIME=$(( $(epoch) - $SECS_BETWEEN_SYNCS + $FAILURE_WAIT_SECS ))
+    do_sync && LAST_SYNC_TIME=$(epoch) || LAST_SYNC_TIME=$(( $(epoch) - SECS_BETWEEN_SYNCS + FAILURE_WAIT_SECS ))
     sleep 5
 done
