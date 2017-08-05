@@ -7,3 +7,5 @@
 	default = upstream
 [rerere]
 	enabled = true
+[diff]
+	renameLimit = 999999
