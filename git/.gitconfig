@@ -1,11 +1,14 @@
 [user]
 	email = msherry@gmail.com
 	name = Marc Sherry
+	signingkey = 5B0795522EFB72E98035F8AB66E9239269E5E2F1
 [core]
-	excludesfile = /Users/marc/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [push]
 	default = upstream
 [rerere]
 	enabled = true
 [diff]
 	renameLimit = 999999
+[gpg]
+	program = gpg2
