@@ -3,3 +3,4 @@ marc.py
 *_flymake.py
 .mypy_cache
 flycheck_*
+.DS_Store
