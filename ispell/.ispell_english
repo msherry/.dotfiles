@@ -44,6 +44,7 @@ balancedinvoice
 BalancedPayments
 banhammer
 barfs
+basename
 Bayes
 beachball
 beanie
@@ -79,6 +80,7 @@ codebase
 colorize
 com
 Commerce's
+committer
 committer's
 config
 configs
@@ -113,6 +115,7 @@ DFI
 dict
 dicts
 diff
+diffs
 disapprovals
 DIY
 dob
@@ -172,6 +175,7 @@ germanmathdude
 gevent
 Gina
 Gina's
+Git's
 github
 gmail
 goldpick
@@ -202,6 +206,7 @@ imperators
 incentivized
 incentivizes
 init
+inserters
 int
 invoiceable
 iOS
@@ -218,6 +223,8 @@ joists
 json
 Kanji
 katakana
+keymap
+keymaps
 knox
 lexis
 lib
@@ -235,6 +242,8 @@ mac
 MachineLearningCheck
 Macy's
 MAGENTO
+magit
+Magit's
 mahmoud
 marc
 mastercard
@@ -340,7 +349,7 @@ RabbitMQ
 railings
 ratelimit
 realtime
-Rebase
+rebase
 Recharacterize
 recognise
 Redis
@@ -425,6 +434,7 @@ tokenization
 TOKENIZATIONS
 tokenize
 tokenized
+toplevel
 transactionally
 TransactionHold
 TTLs
@@ -446,9 +456,12 @@ unittests
 unmarshal
 Unparseable
 unpausing
+unpulled
+unpushed
 unsanitized
 unserializable
 unserialized
+unstaged
 unvalidated
 updatable
 uri
@@ -464,6 +477,7 @@ validators
 vantiv
 var
 variabilities
+VCS
 venv'd
 versioning
 vim
