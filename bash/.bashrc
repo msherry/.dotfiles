@@ -150,8 +150,8 @@ colors() {
 	local fgc bgc vals seq0
 
 	printf "Color escapes are %s\n" '\e[${value};...;${value}m'
-	printf "Values 30..37 are \e[33mforeground colors\e[m\n"
-	printf "Values 40..47 are \e[43mbackground colors\e[m\n"
+	printf "Values 30..37 are \e[31mforeground colors\e[m\n"
+	printf "Values 40..47 are \e[41mbackground colors\e[m\n"
 	printf "Value  1 gives a  \e[1mbold-faced look\e[m\n\n"
 
 	# foreground colors

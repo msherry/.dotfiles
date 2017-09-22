@@ -97,6 +97,8 @@ Crowdhoster
 CSLB
 csv
 curated
+datapoint
+datapoints
 datastructure
 db
 deassociate
@@ -226,6 +228,7 @@ katakana
 keymap
 keymaps
 knox
+launchctl
 lexis
 lib
 libs
@@ -245,6 +248,7 @@ MAGENTO
 magit
 Magit's
 mahmoud
+manpage
 marc
 mastercard
 Mastercard's
@@ -290,6 +294,7 @@ onboard
 onboarding
 ops
 Optimus
+osama's
 overreacted
 overreaction
 overstock
@@ -345,6 +350,7 @@ pycheckers
 pylint
 Python's
 pythonisms
+quickselect
 RabbitMQ
 railings
 ratelimit
@@ -397,6 +403,7 @@ squatter's
 ssh
 stackoverflow
 stakeholders
+standup
 stat
 stats
 stdout
@@ -451,6 +458,7 @@ unenrolled
 Unenrolls
 unfiled
 unflappable
+ungrouped
 unittest
 unittests
 unmarshal
@@ -495,6 +503,7 @@ whitelist
 Whitelisted
 Whitelisting
 whitelists
+WIP
 workflow
 Wtf
 www

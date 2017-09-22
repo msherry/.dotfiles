@@ -20,3 +20,6 @@ alias rmpyc='find . -name \*.pyc -print0 | xargs -0 rm'
 alias yolo='fab -R prod up -f scripts/fabfile.py'
 
 alias mux='tmuxinator'
+
+# Time since epoch, in seconds
+alias epoch='date -j -f "%a %b %d %T %Z %Y" "`date`" "+%s"'

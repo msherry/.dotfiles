@@ -46,6 +46,7 @@ windows:
             - vagrant up osx1012
             - vagrant ssh osx1012
             - cd ~/client
+            - tmux attach || tmux
         - fetcher:
             - cd ~/src/client
             - SECS=$(($RANDOM % 600)); echo "Sleeping for $SECS seconds before initial fetch"; sleep $SECS; SECS=600; while [ 1 ]; do git fetch; echo "Sleeping for $SECS seconds..."; sleep $SECS; done
