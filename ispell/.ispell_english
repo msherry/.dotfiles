@@ -155,6 +155,7 @@ Eyedrops
 fab
 Factorize
 FBO
+featureful
 FIXME
 flycheck
 Foscam
@@ -242,6 +243,7 @@ lockfile
 Lodestone's
 LogicalError
 lookbehind
+lube
 mac
 MachineLearningCheck
 Macy's
@@ -349,6 +351,7 @@ PRs
 pushback
 py
 pycheckers
+pyflakes
 pylint
 Python's
 pythonisms
