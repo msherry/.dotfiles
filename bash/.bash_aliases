@@ -23,3 +23,6 @@ alias mux='tmuxinator'
 
 # Time since epoch, in seconds
 alias epoch='date -j -f "%a %b %d %T %Z %Y" "`date`" "+%s"'
+
+# Ring the bell - https://stackoverflow.com/a/30016842/52550
+alias notify="tput bel"

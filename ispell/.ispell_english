@@ -209,6 +209,7 @@ imperator
 imperators
 incentivized
 incentivizes
+InfluxDB
 init
 inserters
 int
@@ -226,6 +227,7 @@ joist
 joists
 json
 Kanji
+kapacitor
 katakana
 keymap
 keymaps
@@ -260,6 +262,7 @@ matthewfl
 maxconn
 Meerkat
 memcached
+memoization
 memoize
 memoized
 memoizing
@@ -395,6 +398,7 @@ shitty
 Shopify
 shopify's
 SIGHUP
+sigil
 sigils
 SIGINT
 SIGTTOU
@@ -437,6 +441,7 @@ TargetingSpec
 templatize
 Templatized
 templatizing
+TICKscript
 timeline
 timelines
 timezone
@@ -449,8 +454,10 @@ tokenized
 toplevel
 transactionally
 TransactionHold
+trie
 TTLs
 tz
+unapproved
 unblacklisting
 unbreak
 uncomplicated
@@ -515,6 +522,7 @@ www
 xts
 xunit
 Yuan
+Yubikeys
 Yutani
 Zen's
 zipgun

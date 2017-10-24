@@ -183,3 +183,7 @@ export PATH=$GOROOT/bin:$PATH
 
 # GPG related, see https://github.com/keybase/keybase-issues/issues/1712
 export GPG_TTY=$(tty)
+
+# Don't lose bash history -
+# http://www.aloop.org/2012/01/19/flush-commands-to-bash-history-immediately/
+export PROMPT_COMMAND='history -a'

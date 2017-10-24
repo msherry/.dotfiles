@@ -33,7 +33,7 @@ windows:
             - SECS=$(($RANDOM % 600)); echo "Sleeping for $SECS seconds before initial fetch"; sleep $SECS; SECS=600; while [ 1 ]; do git fetch; echo "Sleeping for $SECS seconds..."; sleep $SECS; done
         - watcher:
             - cd cd ~/src/server/build_tools
-            - while [ 1 ]; do echo "start..."; mbzl gen .; echo "done."; echo; sleep 5; done
+            # - while [ 1 ]; do echo "start..."; mbzl gen .; echo "done."; echo; sleep 5; done
         - bash:
             - cd ~/src/server
             - workon server
@@ -43,10 +43,10 @@ windows:
         - vm:
             - cd ~/src/client
             - . ~/.virtualenvs/client/bin/activate
-            - vagrant up osx1012
-            - vagrant ssh osx1012
-            - cd ~/client
-            - tmux attach || tmux
+            # - vagrant up osx1012
+            # - vagrant ssh osx1012
+            # - cd ~/client
+            # - tmux attach || tmux
         - fetcher:
             - cd ~/src/client
             - SECS=$(($RANDOM % 600)); echo "Sleeping for $SECS seconds before initial fetch"; sleep $SECS; SECS=600; while [ 1 ]; do git fetch; echo "Sleeping for $SECS seconds..."; sleep $SECS; done
@@ -61,3 +61,18 @@ windows:
       offlineimap-runner.sh
   - bash:
       - cd ~/src/server
+  - kapacitor:
+      layout: 1cf1,223x59,0,0[224x25,0,0,4,224x14,0,26{102x14,0,26,11,121x14,103,26,12},224x19,0,41{86x19,0,41,13,137x19,87,41,14}]
+      panes:
+        - work:
+            - cd ~/src/kapacitor/
+        - recordings:
+            - watch -n 5 kapacitor list recordings
+        - tasks:
+            - watch -n 5 kapacitor list tasks
+        - ssh:
+            - ssh -t -R2222:localhost:22 -R9092:localhost:9092 siphon "ssh -t -R5086:localhost:5086 localhost -p 2222"
+            # - ssh -R2222:localhost:22 -R9092:localhost:9092 siphon
+            # - ssh -R5086:localhost:5086 localhost -p 2222
+        - logs:
+            - less -n /usr/local/var/log/kapacitor.log
