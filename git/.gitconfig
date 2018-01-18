@@ -10,3 +10,5 @@
 	enabled = true
 [diff]
 	renameLimit = 999999
+[github]
+	user = msherry

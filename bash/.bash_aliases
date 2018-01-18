@@ -26,3 +26,6 @@ alias epoch='date -j -f "%a %b %d %T %Z %Y" "`date`" "+%s"'
 
 # Ring the bell - https://stackoverflow.com/a/30016842/52550
 alias notify="tput bel"
+
+# Unfuck managed preferences
+alias unfuck="sudo rm -rf /Library/Managed\ Preferences/msherry && sudo pkill -9 -f cfprefsd"

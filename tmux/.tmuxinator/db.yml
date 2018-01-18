@@ -32,12 +32,12 @@ windows:
         - fetcher:
             - SECS=$(($RANDOM % 600)); echo "Sleeping for $SECS seconds before initial fetch"; sleep $SECS; SECS=600; while [ 1 ]; do git fetch; echo "Sleeping for $SECS seconds..."; sleep $SECS; done
         - watcher:
-            - cd cd ~/src/server/build_tools
+            - cd ~/src/server/build_tools
             # - while [ 1 ]; do echo "start..."; mbzl gen .; echo "done."; echo; sleep 5; done
         - bash:
             - cd ~/src/server
             - workon server
-  - vagrant-osx1012:
+  - vagrant:
       layout: c2c7,182x43,0,0[182x24,0,0,0,182x18,0,25{90x18,0,25[90x9,0,25,5,90x8,0,35,18],91x18,91,25,6}]
       panes:
         - vm:
@@ -67,12 +67,16 @@ windows:
         - work:
             - cd ~/src/kapacitor/
         - recordings:
-            - watch -n 5 kapacitor list recordings
+            - watch -n 60 kapacitor -url http://localhost:5092 list recordings
         - tasks:
-            - watch -n 5 kapacitor list tasks
+            - watch -n 60 kapacitor -url http://localhost:5092 list tasks
         - ssh:
-            - ssh -t -R2222:localhost:22 -R9092:localhost:9092 siphon "ssh -t -R5086:localhost:5086 localhost -p 2222"
+            # - ssh -t -R2222:localhost:22 -R9092:localhost:9092 siphon "ssh -t -R5086:localhost:5086 localhost -p 2222"
             # - ssh -R2222:localhost:22 -R9092:localhost:9092 siphon
             # - ssh -R5086:localhost:5086 localhost -p 2222
-        - logs:
             - less -n /usr/local/var/log/kapacitor.log
+        - logs:
+            - ssh -L 6086:localhost:5086 -L5092:localhost:5092 apogee-influxdb
+            - less -n /var/log/dropbox/kapacitord_0.log
+  - mxc:
+      - sudo watch -n 60 "rm -rf /Library/Managed\ Preferences/msherry && pkill -9 -f cfprefsd"

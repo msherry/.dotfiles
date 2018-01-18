@@ -10,6 +10,8 @@
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 
+export PATH=~/projects/flycheck-pycheckers/bin/:$PATH
+
 # Python virtualenv stuff
 if [ -e /usr/local/bin/virtualenvwrapper.sh ]; then
     source /usr/local/bin/virtualenvwrapper.sh
@@ -54,8 +56,14 @@ fi
 #export SSL_CERT_FILE="$(brew --prefix)/share/ca-bundle.crt"
 
 # don't put duplicate lines in the history. See bash(1) for more options
+export HISTSIZE=
+export HISTFILESIZE=
 export HISTCONTROL=ignoredups
 shopt -s histappend
+
+# Don't lose bash history -
+# http://www.aloop.org/2012/01/19/flush-commands-to-bash-history-immediately/
+export PROMPT_COMMAND='history -a'
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
@@ -183,7 +191,3 @@ export PATH=$GOROOT/bin:$PATH
 
 # GPG related, see https://github.com/keybase/keybase-issues/issues/1712
 export GPG_TTY=$(tty)
-
-# Don't lose bash history -
-# http://www.aloop.org/2012/01/19/flush-commands-to-bash-history-immediately/
-export PROMPT_COMMAND='history -a'

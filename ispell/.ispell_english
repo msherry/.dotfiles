@@ -71,6 +71,7 @@ Centurion
 Chao
 chargeback
 CheckConstraint
+checker's
 ci
 clogger
 Clojure
@@ -146,6 +147,7 @@ env
 eprotect
 erb
 eval
+Evangelizing
 eventing
 eventize
 experian
@@ -158,6 +160,7 @@ FBO
 featureful
 FIXME
 flycheck
+fontify
 Foscam
 fraudsters
 fraudy
@@ -205,6 +208,7 @@ idempotency
 ids
 IDs
 iff
+Imagemagick
 imperator
 imperators
 incentivized
@@ -244,9 +248,11 @@ Litle
 lockfile
 Lodestone's
 LogicalError
+lookback
 lookbehind
 lube
 mac
+macbook
 MachineLearningCheck
 Macy's
 MAGENTO
@@ -260,6 +266,7 @@ Mastercard's
 Matin
 matthewfl
 maxconn
+maxing
 Meerkat
 memcached
 memoization
@@ -281,6 +288,8 @@ msherry
 msherry's
 MySQL
 nacha
+nano
+nanos
 nat
 Neiman
 NetConnectRequest
@@ -306,12 +315,14 @@ overreacted
 overreaction
 overstock
 PagerDuty
+pagerDuty
 Panasonic
 param
 params
 paren
 parralam
 parseable
+patronus
 payout
 PermissionFilter
 phabricator
@@ -340,6 +351,7 @@ PreciseIDServer
 precog
 Preconfigure
 PREORDER
+prepopulated
 prereq
 proactively
 prodtest
@@ -397,6 +409,7 @@ Sherry's
 shitty
 Shopify
 shopify's
+sideload
 SIGHUP
 sigil
 sigils
@@ -489,6 +502,7 @@ url
 urlencode
 urls
 Urlstore
+USB
 usr
 utf
 utils
