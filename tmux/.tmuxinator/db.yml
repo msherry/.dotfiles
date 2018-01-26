@@ -57,6 +57,7 @@ windows:
         - bash:
             - cd ~/src/client
             - . ~/.virtualenvs/client/bin/activate
+            # - export DROPBOX_ENABLE_NUCLEUS=1
   - offlineimap:
       offlineimap-runner.sh
   - bash:

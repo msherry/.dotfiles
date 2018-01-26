@@ -45,10 +45,10 @@ fi
 [ -e ~/bin/tmuxinator.bash ] && source ~/bin/tmuxinator.bash
 
 # Homebrew completion
-if [ -f `brew --repository`/Library/Contributions/brew_bash_completion.sh ]; then
-    source `brew --repository`/Library/Contributions/brew_bash_completion.sh
-elif [ -f $(brew --prefix)/etc/bash_completion ]; then
-    source $(brew --prefix)/etc/bash_completion
+if [ -f "$(brew --repository)"/Library/Contributions/brew_bash_completion.sh ]; then
+    source "$(brew --repository)"/Library/Contributions/brew_bash_completion.sh
+elif [ -f "$(brew --prefix)"/etc/bash_completion ]; then
+    source "$(brew --prefix)"/etc/bash_completion
 fi
 
 # For berks
@@ -142,15 +142,24 @@ fi
 # AWS cli completion
 complete -C aws_completer aws
 
-if [ -e ~/.bash_company ]; then
-    for f in ~/.bash_company/*; do
-        . $f
-    done
-fi
+# Rust-related
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# Go-related
+export GOROOT=~/go
+export PATH=$GOROOT/bin:$PATH
 
 if [ -e ~/.common ]; then
     for f in ~/.common/*; do
-        . $f
+        . "$f"
+    done
+fi
+
+# Company overrides come last because they may e.g. have company-specific
+# modifications to paths
+if [ -e ~/.bash_company ]; then
+    for f in ~/.bash_company/*; do
+        . "$f"
     done
 fi
 
@@ -184,10 +193,6 @@ colors() {
 		echo; echo
 	done
 }
-
-# Go-related
-export GOROOT=~/go
-export PATH=$GOROOT/bin:$PATH
 
 # GPG related, see https://github.com/keybase/keybase-issues/issues/1712
 export GPG_TTY=$(tty)
