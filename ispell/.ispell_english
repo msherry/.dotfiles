@@ -120,6 +120,7 @@ dicts
 diff
 diffs
 disapprovals
+discoverable
 DIY
 dob
 doc
@@ -233,6 +234,7 @@ json
 Kanji
 kapacitor
 katakana
+keybindings
 keymap
 keymaps
 knox
@@ -302,6 +304,7 @@ nordstrom
 Nordstrom's
 Nose's
 nostromo
+notmuch
 nullable
 offlineimap
 ok
@@ -375,6 +378,7 @@ RabbitMQ
 railings
 ratelimit
 realtime
+reassociate
 rebase
 Recharacterize
 recognise
