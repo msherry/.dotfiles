@@ -196,3 +196,7 @@ colors() {
 
 # GPG related, see https://github.com/keybase/keybase-issues/issues/1712
 export GPG_TTY=$(tty)
+
+# For John the Ripper, jumbo
+# http://www.ylabs.co.kr/index.php?mid=board_pen_test&document_srl=30969&listStyle=viewer&page=1
+export PATH=/usr/local/share/john/:$PATH
