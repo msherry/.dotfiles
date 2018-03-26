@@ -143,6 +143,8 @@ elasticsearch
 Elisp
 emacsclient
 emailed
+Emoji
+Enqueuing
 enum
 env
 eprotect
@@ -160,6 +162,7 @@ Factorize
 FBO
 featureful
 FIXME
+fixups
 flycheck
 fontify
 Foscam
@@ -190,6 +193,7 @@ goldpick
 greenlet
 gridview
 guid
+Guido's
 Gunbot
 Gunbroker
 GunWatcher
@@ -247,6 +251,7 @@ lifesaver
 lightgray
 linewise
 Litle
+localhost
 lockfile
 Lodestone's
 LogicalError
@@ -395,6 +400,8 @@ requeue
 requeueing
 reseating
 RESTful
+resubscribe
+resync
 rishabh
 roadmap
 roundtrip
@@ -435,6 +442,7 @@ stats
 stdout
 str
 StrictHostKeyChecking
+Strikethrough
 StringIO
 struct
 subcontractors
@@ -500,6 +508,8 @@ unsanitized
 unserializable
 unserialized
 unstaged
+Unsubscribe
+Unsubscribed
 unvalidated
 updatable
 uri
@@ -536,6 +546,7 @@ Whitelisting
 whitelists
 WIP
 workflow
+workstream
 Wtf
 www
 xts

@@ -57,7 +57,7 @@ singlethreadperfolder = no
 
 folderfilter = lambda foldername: foldername not in {
     'Crashlytics', 'Workflows', '[Gmail]/Trash', '[Gmail]/Spam', 'TODO', 'Flawless',
-    'Specs', 'Pinlater'}
+    'Specs', 'Pinlater', 'Failed Apogee builds'}
 nametrans = lambda foldername: {
     # 'INBOX': 'Inbox',
     '[Gmail]/Starred': 'flagged',

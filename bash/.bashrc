@@ -145,10 +145,6 @@ complete -C aws_completer aws
 # Rust-related
 export PATH="$HOME/.cargo/bin:$PATH"
 
-# Go-related
-export GOROOT=~/go
-export PATH=$GOROOT/bin:$PATH
-
 if [ -e ~/.common ]; then
     for f in ~/.common/*; do
         . "$f"

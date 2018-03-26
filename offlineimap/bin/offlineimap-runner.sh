@@ -14,6 +14,13 @@ SECS_UNTIL_SCHEDULED=
 # Make sure our update file exists and has a reasonable update time
 touch $UPDATE_FILE_PATH
 
+if [ ! -z "$1" ]; then
+    # Custom minutes between syncs
+    SECS_BETWEEN_SYNCS=$(( $1 * 60 ))
+fi
+
+echo "$SECS_BETWEEN_SYNCS seconds between syncs"
+
 # Return the current date/time in seconds since the epoch
 epoch()
 {

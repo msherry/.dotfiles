@@ -32,7 +32,7 @@ windows:
         - fetcher:
             - SECS=$(($RANDOM % 600)); echo "Sleeping for $SECS seconds before initial fetch"; sleep $SECS; SECS=600; while [ 1 ]; do git fetch; echo "Sleeping for $SECS seconds..."; sleep $SECS; done
         - watcher:
-            - cd ~/src/server/build_tools
+            - cd ~/src/server/
             # - while [ 1 ]; do echo "start..."; mbzl gen .; echo "done."; echo; sleep 5; done
         - bash:
             - cd ~/src/server
