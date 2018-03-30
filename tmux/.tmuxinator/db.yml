@@ -68,16 +68,16 @@ windows:
         - work:
             - cd ~/src/kapacitor/
         - recordings:
-            - watch -n 60 kapacitor -url http://localhost:5092 list recordings
+            # - watch -n 60 kapacitor -url http://localhost:5092 list recordings
         - tasks:
-            - watch -n 60 kapacitor -url http://localhost:5092 list tasks
+            # - watch -n 60 kapacitor -url http://localhost:5092 list tasks
         - ssh:
             # - ssh -t -R2222:localhost:22 -R9092:localhost:9092 siphon "ssh -t -R5086:localhost:5086 localhost -p 2222"
             # - ssh -R2222:localhost:22 -R9092:localhost:9092 siphon
             # - ssh -R5086:localhost:5086 localhost -p 2222
             - less -n /usr/local/var/log/kapacitor.log
         - logs:
-            - ssh -L 6086:localhost:5086 -L5092:localhost:5092 apogee-influxdb
-            - less -n /var/log/dropbox/kapacitord_0.log
+            # - ssh -L 6086:localhost:5086 -L5092:localhost:5092 apogee-influxdb
+            # - less -n /var/log/dropbox/kapacitord_0.log
   - mxc:
       - sudo watch -n 60 "rm -rf /Library/Managed\ Preferences/msherry && pkill -9 -f cfprefsd"
