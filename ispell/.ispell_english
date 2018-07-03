@@ -38,6 +38,7 @@ AWS
 backend
 backends
 backoff
+backpressure
 backtest
 balanced's
 balancedinvoice
@@ -402,6 +403,7 @@ reseating
 RESTful
 resubscribe
 resync
+resyncs
 rishabh
 roadmap
 roundtrip
@@ -440,6 +442,8 @@ standup
 stat
 stats
 stdout
+Stormcrow
+stormcrowed
 str
 StrictHostKeyChecking
 Strikethrough
@@ -458,6 +462,7 @@ supergiant
 supergiant's
 supergiants's
 Swarovski
+synced
 synology
 sysconfig
 Tamizi
@@ -527,6 +532,7 @@ vantiv
 var
 variabilities
 VCS
+vendored
 venv'd
 versioning
 vim
