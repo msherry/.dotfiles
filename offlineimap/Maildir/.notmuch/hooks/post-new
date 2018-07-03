@@ -1,4 +1,5 @@
 #!/bin/sh
 
+notmuch tag +thread_flagged $(notmuch search --output=threads tag:flagged)
 notmuch tag +muted $(notmuch search --output=threads tag:muted)
 notmuch tag -INBOX $(notmuch search --output=threads tag:muted)

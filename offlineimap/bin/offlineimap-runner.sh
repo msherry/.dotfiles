@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 TIMEOUT=gtimeout
 
@@ -7,6 +7,7 @@ TIMEOUT=gtimeout
 UPDATE_FILE_PATH=/tmp/offlineimap_sync_required
 SECS_BETWEEN_SYNCS=$(( 4 * 60 ))
 FAILURE_WAIT_SECS=60
+MAX_RUN_TIME=5m
 
 LAST_SYNC_TIME=0
 SECS_UNTIL_SCHEDULED=
@@ -95,8 +96,8 @@ do_sync()
 {
     # Trailing `echo` command because offlineimap often returns some random
     # error when it finishes syncing
-    # $TIMEOUT --foreground --signal=KILL 4m bash -c 'offlineimap -o; echo'
-    $TIMEOUT --foreground --signal=KILL 4m bash -c 'offlineimap -o'
+    # $TIMEOUT --foreground --signal=KILL $MAX_RUN_TIME bash -c 'offlineimap -o; echo'
+    $TIMEOUT --foreground --signal=KILL $MAX_RUN_TIME bash -c 'offlineimap -o'
 }
 
 while true; do

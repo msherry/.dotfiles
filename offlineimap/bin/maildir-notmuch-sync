@@ -630,7 +630,7 @@ Maildir_State_To_Notmuch__Add_Tags_To_Notmuch ()
     local THIS_COUNT="$(notmuch count $THIS_NOTMUCH_QUERY)"
 
     $DRYRUN || notmuch tag +"$THIS_NOTMUCH_TAG" -- $THIS_NOTMUCH_QUERY
-    [[ $THIS_COUNT > 0 ]] && echo "Tagged $THIS_COUNT messages with \"$THIS_NOTMUCH_TAG\"" || true
+    [[ $THIS_COUNT -gt 0 ]] && echo "Tagged $THIS_COUNT messages with \"$THIS_NOTMUCH_TAG\"" || true
 
 }
 
@@ -659,7 +659,7 @@ Maildir_State_To_Notmuch__Remove_Tags_From_Notmuch ()
     local THIS_COUNT="$(notmuch count $THIS_NOTMUCH_QUERY)"
 
     $DRYRUN || notmuch tag -"$THIS_NOTMUCH_TAG" -- $THIS_NOTMUCH_QUERY
-    [[ $THIS_COUNT > 0 ]] && echo "Untagged $THIS_COUNT messages, removed \"$THIS_NOTMUCH_TAG\"" || true
+    [[ $THIS_COUNT -gt 0 ]] && echo "Untagged $THIS_COUNT messages, removed \"$THIS_NOTMUCH_TAG\"" || true
 
 }
 

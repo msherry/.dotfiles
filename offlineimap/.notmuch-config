@@ -1,4 +1,4 @@
-# Database configuration
+# Database configuration  -*- mode: conf-unix; -*-
 #
 # The only value supported here is 'path' which should be the top-level
 # directory where your mail currently exists and to where mail will be

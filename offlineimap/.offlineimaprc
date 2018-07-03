@@ -43,7 +43,8 @@ folderfilter = lambda foldername: foldername not in {
 nametrans = lambda foldername: {
     # 'Inbox': 'INBOX',
     'flagged': '[Gmail]/Starred',
-    'archive': '[Gmail]/All Mail'}.get(foldername, foldername)
+    'archive': '[Gmail]/All Mail',
+    'differential.other': 'Differential: other'}.get(foldername, foldername)
 
 
 [Repository dropbox-remote]
@@ -61,6 +62,7 @@ folderfilter = lambda foldername: foldername not in {
 nametrans = lambda foldername: {
     # 'INBOX': 'Inbox',
     '[Gmail]/Starred': 'flagged',
-    '[Gmail]/All Mail': 'archive'}.get(foldername, foldername)
+    '[Gmail]/All Mail': 'archive',
+    'Differential: other': 'differential.other'}.get(foldername, foldername)
 
 sslcacertfile = /usr/local/etc/openssl/cert.pem
