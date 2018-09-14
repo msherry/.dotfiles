@@ -4,3 +4,4 @@ marc.py
 .mypy_cache
 flycheck_*
 .DS_Store
+.dir-locals.el
