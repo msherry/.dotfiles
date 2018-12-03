@@ -119,6 +119,7 @@ DFI
 dict
 dicts
 diff
+diffing
 diffs
 disapprovals
 discoverable
@@ -388,6 +389,7 @@ ratelimit
 realtime
 reassociate
 rebase
+rebased
 Recharacterize
 recognise
 Redis
@@ -430,6 +432,7 @@ sigil
 sigils
 SIGINT
 SIGTTOU
+simplistically
 Slickguns
 snafus
 Sorny
@@ -440,6 +443,7 @@ squatter's
 ssh
 stackoverflow
 stakeholders
+standalone
 standup
 stat
 stats
