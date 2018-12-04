@@ -4,17 +4,17 @@
 
 [general]
 # List of accounts to be synced, separated by a comma.
-accounts = dropbox
+accounts = affirm
 socktimeout = 60
 fsync = false
 pythonfile = ~/.offlineimap.py
 
-[Account dropbox]
+[Account affirm]
 # Identifier for the local repository; e.g. the maildir to be synced via IMAP.
-localrepository = dropbox-local
+localrepository = affirm-local
 
 # Identifier for the remote repository; i.e. the actual IMAP, usually non-local.
-remoterepository = dropbox-remote
+remoterepository = affirm-remote
 
 # This header is where labels go.  Usually you will be fine
 # with default value (X-Keywords), but in case you want it
@@ -29,15 +29,15 @@ synclabels = yes
 
 autorefresh = 5
 quick = 5
-presynchook = ~/bin/maildir-notmuch-sync pre ~/Maildir/msherry@dropbox.com
-postsynchook = ~/bin/maildir-notmuch-sync post ~/Maildir/msherry@dropbox.com; emacsclient --eval '(display-time-update)' > /dev/null
+presynchook = ~/bin/maildir-notmuch-sync pre ~/Maildir/marc.sherry@affirm.com
+postsynchook = ~/bin/maildir-notmuch-sync post ~/Maildir/marc.sherry@affirm.com; emacsclient --eval '(display-time-update)' > /dev/null
 
 
-[Repository dropbox-local]
+[Repository affirm-local]
 type = GmailMaildir
 
 # Where should the mail be placed?
-localfolders = ~/Maildir/msherry@dropbox.com
+localfolders = ~/Maildir/marc.sherry@affirm.com
 folderfilter = lambda foldername: foldername not in {
              }
 nametrans = lambda foldername: {
@@ -47,12 +47,12 @@ nametrans = lambda foldername: {
     'differential.other': 'Differential: other'}.get(foldername, foldername)
 
 
-[Repository dropbox-remote]
+[Repository affirm-remote]
 # Remote repos can be IMAP or Gmail, the latter being a preconfigured IMAP.
 type = Gmail
-remoteuser = msherry@dropbox.com
+remoteuser = marc.sherry@affirm.com
 # remotepass is an option here, but remotepasseval is better
-remotepasseval = get_password_emacs("msherry@dropbox.com", "imap.gmail.com", "993")
+remotepasseval = get_password_emacs("marc.sherry@affirm.com", "imap.gmail.com", "993")
 maxconnections = 1
 singlethreadperfolder = no
 

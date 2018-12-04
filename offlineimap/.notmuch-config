@@ -7,7 +7,7 @@
 # configured here named ".notmuch".
 #
 [database]
-path=/Users/msherry/Maildir
+path=/Users/marcsherry/Maildir
 
 # User configuration
 #
@@ -26,7 +26,7 @@ path=/Users/msherry/Maildir
 #
 [user]
 name=Marc Sherry
-primary_email=msherry@dropbox.com
+primary_email=marc.sherry@affirm.com
 
 # Configuration for "notmuch new"
 #

@@ -406,16 +406,15 @@ Notmuch_Tag_From_Full_Path ()
 # If SLASHES_TO_DASHES is true, infix slashes will be converted to
 # dashes, e.g. "client/bob" becomes "client-bob"
 
-case $TRIM_ACCOUNT_PREFIX_IN_TAGS in
-    true|TRUE|yes|YES|y|Y) local TRIMMER="$MAILDIR_ACCOUNT_ROOT" ;;
-    *)                     local TRIMMER="$NOTMUCH_ROOT"         ;;
-esac
+    case $TRIM_ACCOUNT_PREFIX_IN_TAGS in
+        true|TRUE|yes|YES|y|Y) local TRIMMER="$MAILDIR_ACCOUNT_ROOT" ;;
+        *)                     local TRIMMER="$NOTMUCH_ROOT"         ;;
+    esac
 
-case $SLASHES_TO_DASHES in
-    true|TRUE|yes|YES|y|Y) echo "${1#$TRIMMER/}"                 ;;
-    *)                     echo "${1#$TRIMMER/}" | sed "s+/+-+g" ;;
-esac
-
+    case $SLASHES_TO_DASHES in
+        true|TRUE|yes|YES|y|Y) echo "${1#$TRIMMER/}"                 ;;
+        *)                     echo "${1#$TRIMMER/}" | sed "s+/+-+g" ;;
+    esac
 }
 
 Notmuch_Folder_From_Full_Path ()

@@ -1,0 +1,49 @@
+# ~/.tmuxinator/af.yml
+
+name: af
+root: ~/src/all-the-things
+
+# Optional tmux socket
+# socket_name: foo
+
+# Runs before everything. Use it to start daemons etc.
+# pre: sudo /etc/rc.d/mysqld start
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: workon server
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers
+# like byobu.
+# tmux_command: byobu
+
+windows:
+  - dev:
+      # layout: main-horizontal
+      layout: e50d,208x53,0,0[208x25,0,0,0,208x27,0,26{55x27,0,26,3,152x27,56,26,4}]
+      panes:
+        - nosetests:
+            - . deployable/monolith/src/.venv/bin/activate
+        - nothing:
+
+        - tests:
+            - . deployable/monolith/src/.venv/bin/activate
+            - docker-compose -f ~/src/all-the-things/deployable/meta/servers/docker-compose.yml up -d
+  - deploy:
+      - . ~/src/all-the-things/build-tools/.deploy_venv/bin/activate
+      - echo "See https://readme.affirm-dev.com/py/all-the-things/latest/deploy.html for deploy instructions"
+  - offlineimap:
+      offlineimap-runner.sh
+  - sherlock:
+      # layout: main-horizontal
+      layout: layout b9cd,208x52,0,0[208x8,0,0,3,208x44,0,9,8]
+      panes:
+        - ssh:
+          - ssh sherlock
+        - psql:
+          - psql service="sherlock-prod"
+  - sparrow:
+      - ssh sparrow-violet
+  - bash:

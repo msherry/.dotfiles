@@ -6,3 +6,8 @@ if [ -f ~/.bashrc ]; then
 fi
 
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
+PYENV=`which pyenv`
+if [ -x "$PYENV" ]; then
+    eval "$(pyenv init -)"
+fi
