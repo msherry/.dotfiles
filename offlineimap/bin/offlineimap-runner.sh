@@ -42,7 +42,7 @@ secs_until_scheduled_sync()
 }
 
 # Determine if a local update has happened since our last sync, requiring a new
-# sync. Uses the file reference by UPDATE_FILE_PATH as a sync file -- if not
+# sync. Uses the file referenced by UPDATE_FILE_PATH as a sync file -- if not
 # present or the update time is before LAST_SYNC_TIME, exit with 1. Otherwise,
 # the file is present and updated after our last sync, so exit with 0 to
 # indicate that a sync is required. Make sure that the file is at least 30
