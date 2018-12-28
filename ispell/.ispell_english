@@ -106,12 +106,17 @@ db
 deassociate
 deassociating
 debitable
+debuggability
+deciders
+decisioning
 defaultdicts
 demandware
 Demeter
 deployables
 descripty
+deserialization
 deserialize
+deserialized
 deserializer
 dev
 devapp
@@ -273,6 +278,7 @@ Magus
 mahmoud
 manpage
 marc
+Marqeta
 mastercard
 Mastercard's
 Matin
@@ -295,6 +301,7 @@ MIPS
 misc
 modeline
 monit
+Mordor
 Mountpoint
 msherry
 msherry's
@@ -366,6 +373,7 @@ Preconfigure
 PREORDER
 prepopulated
 prereq
+proactive
 proactively
 prodtest
 ProductGroup
@@ -373,6 +381,7 @@ ProductGroupFactory
 ProductGroupSpec
 ProductGroupSpecFactory
 programmatically
+protobuf
 proxied
 proxying
 PRs
@@ -543,6 +552,7 @@ variabilities
 VCS
 vendored
 venv'd
+Versioned
 versioning
 vim
 virtualenv

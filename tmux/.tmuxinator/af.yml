@@ -33,7 +33,7 @@ windows:
             - docker-compose -f ~/src/all-the-things/deployable/meta/servers/docker-compose.yml up -d
   - deploy:
       - . ~/src/all-the-things/build-tools/.deploy_venv/bin/activate
-      - echo "See https://readme.affirm-dev.com/py/all-the-things/latest/deploy.html for deploy instructions"
+      - # "See https://readme.affirm-dev.com/py/all-the-things/latest/deploy.html for deploy instructions"
   - offlineimap:
       offlineimap-runner.sh
   - sherlock:

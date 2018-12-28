@@ -29,3 +29,6 @@ alias notify="tput bel"
 
 # Unfuck managed preferences
 alias unfuck="sudo rm -rf /Library/Managed\ Preferences/msherry && sudo pkill -9 -f cfprefsd"
+
+# Find parent branch of current git branch. From https://stackoverflow.com/a/17843908/52550
+alias parent="git show-branch | grep '*' | grep -v \"$(git rev-parse --abbrev-ref HEAD)\" | head -n1| sed 's/.*\[\(.*\)\].*/\1/' | sed 's/[\^^~].*//'"
