@@ -17,10 +17,6 @@ if [ -e /usr/local/bin/virtualenvwrapper.sh ]; then
     source /usr/local/bin/virtualenvwrapper.sh
 fi
 
-# Per https://github.com/Homebrew/homebrew-core/issues/15746, brew changed how
-# python is installed -- it's no longer in /usr/local/bin
-export PATH=$(brew --prefix)/opt/python/libexec/bin:$PATH
-
 # cache pip-installed packages to avoid re-downloading
 export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
 
