@@ -11,3 +11,5 @@ PYENV=`which pyenv`
 if [ -x "$PYENV" ]; then
     eval "$(pyenv init -)"
 fi
+
+export PATH="/usr/local/opt/node@8/bin:$PATH"

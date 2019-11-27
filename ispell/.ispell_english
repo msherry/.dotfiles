@@ -10,6 +10,7 @@ AdGroup
 AdGroupFactory
 admin
 aggregator
+aggregators
 airlifted
 amex
 AmmoGrab
@@ -118,6 +119,7 @@ deserialization
 deserialize
 deserialized
 deserializer
+deserializing
 dev
 devapp
 devtools
@@ -129,6 +131,7 @@ diffing
 diffs
 disapprovals
 discoverable
+disrespected
 DIY
 dob
 doc
@@ -206,6 +209,7 @@ Gunbot
 Gunbroker
 GunWatcher
 HAProxy
+headcount
 healthcheck
 hipchat
 hiragana
@@ -228,6 +232,7 @@ incentivized
 incentivizes
 InfluxDB
 init
+Injector
 inserters
 int
 invoiceable
@@ -305,6 +310,7 @@ Mordor
 Mountpoint
 msherry
 msherry's
+mypy
 MySQL
 nacha
 nano
@@ -397,6 +403,7 @@ RabbitMQ
 railings
 ratelimit
 realtime
+rearchitecting
 reassociate
 rebase
 rebased
@@ -422,6 +429,7 @@ rishabh
 roadmap
 roundtrip
 sans
+schmoozing
 Schwab
 screenshot
 screenshots
@@ -502,12 +510,15 @@ transactionally
 TransactionHold
 trie
 TTLs
+typecheck
 tz
+unannotated
 unapproved
 unblacklisting
 unbreak
 uncomplicated
 unconsumed
+Uncontroversial
 uncracked
 underpaying
 underwritten

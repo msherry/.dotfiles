@@ -5,7 +5,7 @@ TIMEOUT=gtimeout
 # The file at this location will be updated by an external process (e.g. emacs)
 # to indicate that a sync is required
 UPDATE_FILE_PATH=/tmp/offlineimap_sync_required
-SECS_BETWEEN_SYNCS=$(( 4 * 60 ))
+SECS_BETWEEN_SYNCS=$(( 3 * 60 ))
 FAILURE_WAIT_SECS=60
 MAX_RUN_TIME=5m
 
@@ -15,7 +15,7 @@ SECS_UNTIL_SCHEDULED=
 # Make sure our update file exists and has a reasonable update time
 touch $UPDATE_FILE_PATH
 
-if [ ! -z "$1" ]; then
+if [ -n "$1" ]; then
     # Custom minutes between syncs
     SECS_BETWEEN_SYNCS=$(( $1 * 60 ))
 fi

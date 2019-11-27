@@ -26,8 +26,9 @@ windows:
       panes:
         - nosetests:
             - . deployable/monolith/src/.venv/bin/activate
-        - nothing:
-
+        - component-tests:
+            - . deployable/monolith/src/.venv/bin/activate
+            - gunicorn -b 0.0.0.0:6005 affirm.rpc2.app.component_test_app:app
         - tests:
             - . deployable/monolith/src/.venv/bin/activate
             - docker-compose -f ~/src/all-the-things/deployable/meta/servers/docker-compose.yml up -d
@@ -41,9 +42,16 @@ windows:
       layout: layout b9cd,208x52,0,0[208x8,0,0,3,208x44,0,9,8]
       panes:
         - ssh:
-          - ssh sherlock
+          # - ssh sherlock
+          - ssh raven-periwinkle
         - psql:
           - psql service="sherlock-prod"
   - sparrow:
       - ssh sparrow-violet
+      - cd src/all-the-things/risk_offline
+      - # ./build-venv.sh
+      - source activate-venv
+      - echo risk-cli fetch-fatlog --ipython PDOP9WLNK4CA9BL7
+  - devnode:
+      - ssh devnode
   - bash:

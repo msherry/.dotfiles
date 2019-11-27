@@ -44,7 +44,8 @@ nametrans = lambda foldername: {
     # 'Inbox': 'INBOX',
     'flagged': '[Gmail]/Starred',
     'archive': '[Gmail]/All Mail',
-    'differential.other': 'Differential: other'}.get(foldername, foldername)
+    'differential.other': 'Differential: other',
+    'identity_triage': 'Identity triage'}.get(foldername, foldername)
 
 
 [Repository affirm-remote]
@@ -53,16 +54,17 @@ type = Gmail
 remoteuser = marc.sherry@affirm.com
 # remotepass is an option here, but remotepasseval is better
 remotepasseval = get_password_emacs("marc.sherry@affirm.com", "imap.gmail.com", "993")
-maxconnections = 1
+maxconnections = 3
 singlethreadperfolder = no
 
 folderfilter = lambda foldername: foldername not in {
     'Crashlytics', 'Workflows', '[Gmail]/Trash', '[Gmail]/Spam', 'TODO', 'Flawless',
-    'Specs', 'Pinlater', 'Failed Apogee builds'}
+    'Specs', 'Pinlater', 'Failed Apogee builds', 'Riskeng Triage', 'Netverify emails'}
 nametrans = lambda foldername: {
     # 'INBOX': 'Inbox',
     '[Gmail]/Starred': 'flagged',
     '[Gmail]/All Mail': 'archive',
-    'Differential: other': 'differential.other'}.get(foldername, foldername)
+    'Differential: other': 'differential.other',
+    'Identity triage': 'identity_triage'}.get(foldername, foldername)
 
 sslcacertfile = /usr/local/etc/openssl/cert.pem

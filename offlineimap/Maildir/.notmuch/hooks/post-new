@@ -5,4 +5,4 @@
 
 notmuch tag +thread_flagged $(notmuch search --output=threads tag:flagged) || true
 notmuch tag +muted $(notmuch search --output=threads tag:muted) || true
-notmuch tag -INBOX $(notmuch search --output=threads tag:muted) || true
+notmuch tag -INBOX $(notmuch search --output=threads tag:muted and tag:INBOX) || true

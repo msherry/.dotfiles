@@ -16,6 +16,7 @@ alias la='ls -A'
 alias l='ls -CF'
 
 alias rmpyc='find . -name \*.pyc -print0 | xargs -0 rm'
+alias rmpyi='find . -name \*.pyi -print0 | xargs -0 rm'
 
 alias yolo='fab -R prod up -f scripts/fabfile.py'
 
