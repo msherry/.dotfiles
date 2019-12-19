@@ -44,6 +44,7 @@ nametrans = lambda foldername: {
     # 'Inbox': 'INBOX',
     'flagged': '[Gmail]/Starred',
     'archive': '[Gmail]/All Mail',
+    'sent': '[Gmail]/Sent Mail',
     'differential.other': 'Differential: other',
     'identity_triage': 'Identity triage'}.get(foldername, foldername)
 
@@ -58,12 +59,13 @@ maxconnections = 3
 singlethreadperfolder = no
 
 folderfilter = lambda foldername: foldername not in {
-    'Crashlytics', 'Workflows', '[Gmail]/Trash', '[Gmail]/Spam', 'TODO', 'Flawless',
+    'Crashlytics', 'Workflows', '[Gmail]/Trash', '[Gmail]/Spam', '[Gmail]/Drafts', 'TODO', 'Flawless',
     'Specs', 'Pinlater', 'Failed Apogee builds', 'Riskeng Triage', 'Netverify emails'}
 nametrans = lambda foldername: {
     # 'INBOX': 'Inbox',
     '[Gmail]/Starred': 'flagged',
     '[Gmail]/All Mail': 'archive',
+    '[Gmail]/Sent Mail': 'sent',
     'Differential: other': 'differential.other',
     'Identity triage': 'identity_triage'}.get(foldername, foldername)
 
