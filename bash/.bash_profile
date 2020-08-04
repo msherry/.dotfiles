@@ -13,3 +13,6 @@ if [ -x "$PYENV" ]; then
 fi
 
 export PATH="/usr/local/opt/node@8/bin:$PATH"
+
+# opam configuration
+test -r /Users/marcsherry/.opam/opam-init/init.sh && . /Users/marcsherry/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true

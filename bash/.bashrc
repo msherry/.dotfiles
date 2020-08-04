@@ -55,6 +55,7 @@ fi
 export HISTSIZE=
 export HISTFILESIZE=
 export HISTCONTROL=ignoredups
+export HISTTIMEFORMAT="%F %T "
 shopt -s histappend
 
 # Don't lose bash history -

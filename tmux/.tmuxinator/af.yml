@@ -33,7 +33,7 @@ windows:
             - . deployable/monolith/src/.venv/bin/activate
             - docker-compose -f ~/src/all-the-things/deployable/meta/servers/docker-compose.yml up -d
   - deploy:
-      - . ~/src/all-the-things/build-tools/.deploy_venv/bin/activate
+      - . ~/src/all-the-things/deployable/meta/src/.venv3/bin/activate
       - # "See https://readme.affirm-dev.com/py/all-the-things/latest/deploy.html for deploy instructions"
   - offlineimap:
       offlineimap-runner.sh

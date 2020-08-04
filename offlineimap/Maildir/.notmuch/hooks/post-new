@@ -1,8 +1,42 @@
-#!/bin/bash
+#!/bin/bash -x
 
 # TODO: these can fail if there are no results being tagged. `|| true` helps
 # the hook as a whole succeed still, but this is kind of lame.
 
-notmuch tag +thread_flagged $(notmuch search --output=threads tag:flagged) || true
-notmuch tag +muted $(notmuch search --output=threads tag:muted) || true
-notmuch tag -INBOX $(notmuch search --output=threads tag:muted and tag:INBOX) || true
+
+# Even though it's documented to work, notmuch-search doesn't seem to support
+# AND -- something like `notmuch search --output=threads tag:muted and
+# tag:INBOX` returns nothing even when each individual tag search returns
+# results found in the other search. Thus, we make each search separately and
+# find common threads. From https://unix.stackexchange.com/a/398143/129055
+
+function merge_tag_search () {
+    local first=1
+    local res=
+    local merged=
+    for query in "$@"
+    do
+        local res=$(notmuch search --output=threads "$query" | sort)
+        if [ $first -eq 1 ]
+        then
+            merged=$res
+        else
+            merged=$(comm -12 <(echo "$merged") <(echo "$res"))
+        fi
+        first=0
+
+        # Break early if we're out of results already
+        if [ "x$merged" == "x" ]
+        then
+            break
+        fi
+    done
+    echo -n "$merged"
+}
+
+
+notmuch tag +thread_flagged $(notmuch search --output=threads tag:flagged and not tag:thread_flagged) || true
+# Ensure all messages in a muted thread are muted
+notmuch tag +muted $(merge_tag_search tag:muted tag:INBOX) || true
+# Mark muted messages as read
+notmuch tag -INBOX $(merge_tag_search tag:muted tag:INBOX) || true

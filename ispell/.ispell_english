@@ -160,6 +160,7 @@ enum
 env
 eprotect
 erb
+erroring
 eval
 Evangelizing
 eventing
@@ -201,6 +202,7 @@ Git's
 github
 gmail
 goldpick
+Grafana
 greenlet
 gridview
 guid
@@ -520,6 +522,7 @@ uncomplicated
 unconsumed
 Uncontroversial
 uncracked
+underlyings
 underpaying
 underwritten
 unenroll
