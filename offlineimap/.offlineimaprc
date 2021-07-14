@@ -46,7 +46,8 @@ nametrans = lambda foldername: {
     'archive': '[Gmail]/All Mail',
     'sent': '[Gmail]/Sent Mail',
     'differential.other': 'Differential: other',
-    'identity_triage': 'Identity triage'}.get(foldername, foldername)
+    'identity_triage': 'Identity triage',
+    'ts_triage': 'T&S Triage'}.get(foldername, foldername)
 
 
 [Repository affirm-remote]
@@ -67,6 +68,7 @@ nametrans = lambda foldername: {
     '[Gmail]/All Mail': 'archive',
     '[Gmail]/Sent Mail': 'sent',
     'Differential: other': 'differential.other',
-    'Identity triage': 'identity_triage'}.get(foldername, foldername)
+    'Identity triage': 'identity_triage',
+    'T&S Triage': 'ts_triage'}.get(foldername, foldername)
 
 sslcacertfile = /usr/local/etc/openssl/cert.pem
