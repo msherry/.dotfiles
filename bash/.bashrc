@@ -6,15 +6,14 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# For homebrew
-export PATH=/usr/local/bin:$PATH
-export PATH=/usr/local/sbin:$PATH
-
-export PATH=~/projects/flycheck-pycheckers/bin/:$PATH
+PYENV=`which pyenv`
+if [ -x "$PYENV" ]; then
+    eval "$(pyenv init -)"
+fi
 
 # Python virtualenv stuff
 if [ -e /usr/local/bin/virtualenvwrapper.sh ]; then
-    source /usr/local/bin/virtualenvwrapper.sh
+    source /usr/local/bin/virtualenvwrapper_lazy.sh
 fi
 
 # cache pip-installed packages to avoid re-downloading
@@ -73,7 +72,11 @@ fi
 
 # for use in the prompt later
 git_branch () {
-    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+    # git >= 2.22
+    git branch --show-current 2>/dev/null | sed -e 's/\(.*\)/(\1)/'
+
+    # older
+    # git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
 export -f git_branch
 
@@ -198,7 +201,3 @@ export PATH=/usr/local/share/john/:$PATH
 if [ -e ~/bin/arcanist/bin ]; then
     export PATH=~/bin/arcanist/bin:$PATH
 fi
-
-
-# Per https://confluence.team.affirm.com/pages/viewpage.action?pageId=135532051
-export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
