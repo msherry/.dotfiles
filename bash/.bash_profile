@@ -40,3 +40,4 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # set +x
 # exec 2>&3 3>&-
+export PATH="/usr/local/opt/openjdk@11/bin:$PATH"
