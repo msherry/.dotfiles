@@ -30,7 +30,7 @@ windows:
             - . deployable/monolith/src/.venv/bin/activate
             - gunicorn -b 0.0.0.0:6005 affirm.rpc2.app.component_test_app:app
         - tests:
-            - . deployable/monolith/src/.venv/bin/activate
+            # - . deployable/monolith/src/.venv/bin/activate
             - docker-compose -f ~/src/all-the-things/deployable/meta/servers/docker-compose.yml up -d
   - deploy:
       - . ~/src/all-the-things/deployable/meta/src/.venv3/bin/activate
