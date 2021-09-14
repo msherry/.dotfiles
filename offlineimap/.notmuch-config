@@ -7,7 +7,7 @@
 # configured here named ".notmuch".
 #
 [database]
-path=~/Maildir
+path=Maildir
 
 # User configuration
 #
