@@ -12,3 +12,5 @@
 	renameLimit = 999999
 [github]
 	user = msherry
+[pull]
+	rebase = false
