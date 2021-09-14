@@ -4,10 +4,47 @@
 
 [general]
 # List of accounts to be synced, separated by a comma.
-accounts = affirm
+accounts = affirm,personal
 socktimeout = 60
 fsync = false
 pythonfile = ~/.offlineimap.py
+
+[Account personal]
+localrepository = personal-local
+remoterepository = personal-remote
+labelsheader = X-Keywords
+synclabels = yes
+autorefresh = 5
+quick = 5
+presynchook = ~/bin/maildir-notmuch-sync pre ~/Maildir/msherry@gmail.com
+postsynchook = ~/bin/maildir-notmuch-sync post ~/Maildir/msherry@gmail.com; emacsclient --eval '(display-time-update)' > /dev/null
+
+[Repository personal-local]
+type = GmailMaildir
+localfolders = ~/Maildir/msherry@gmail.com
+# sep = /
+folderfilter = lambda foldername: foldername not in {
+             }
+nametrans = lambda foldername: {
+    # 'Inbox': 'INBOX',
+    'flagged': '[Gmail]/Starred',
+    'archive': '[Gmail]/All Mail',
+    'sent': '[Gmail]/Sent Mail'}.get(foldername, foldername)
+
+[Repository personal-remote]
+type = Gmail
+remoteuser = msherry@gmail.com
+remotepasseval = get_password_emacs("msherry@gmail.com", "imap.gmail.com", "993")
+maxconnections = 3
+singlethreadperfolder = no
+folderfilter = lambda foldername: foldername in {'[Gmail]/All Mail', '[Gmail]/Sent Mail', 'INBOX'}
+nametrans = lambda foldername: {
+    # 'INBOX': 'Inbox',
+    '[Gmail]/Starred': 'flagged',
+    '[Gmail]/All Mail': 'archive',
+    '[Gmail]/Sent Mail': 'sent'}.get(foldername, foldername)
+sslcacertfile = /usr/local/etc/openssl/cert.pem
+
 
 [Account affirm]
 # Identifier for the local repository; e.g. the maildir to be synced via IMAP.
@@ -59,9 +96,10 @@ remotepasseval = get_password_emacs("marc.sherry@affirm.com", "imap.gmail.com", 
 maxconnections = 3
 singlethreadperfolder = no
 
-folderfilter = lambda foldername: foldername not in {
-    'Crashlytics', 'Workflows', '[Gmail]/Trash', '[Gmail]/Spam', '[Gmail]/Drafts', 'TODO', 'Flawless',
-    'Specs', 'Pinlater', 'Failed Apogee builds', 'Riskeng Triage', 'Netverify emails'}
+# folderfilter = lambda foldername: foldername not in {
+#     'Crashlytics', 'Workflows', '[Gmail]/Trash', '[Gmail]/Spam', '[Gmail]/Drafts', 'TODO', 'Flawless',
+#     'Specs', 'Pinlater', 'Failed Apogee builds', 'Riskeng Triage', 'Netverify emails'}
+folderfilter = lambda foldername: foldername in {'[Gmail]/All Mail', '[Gmail]/Sent Mail', 'INBOX'}
 nametrans = lambda foldername: {
     # 'INBOX': 'Inbox',
     '[Gmail]/Starred': 'flagged',

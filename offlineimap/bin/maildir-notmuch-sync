@@ -368,6 +368,9 @@ NOTMUCH_ROOT="${NOTMUCH_ROOT%/}"
 # (use eval in case user quoted a path with ~ in it, though they shouldn't have)
 eval "MAILDIR_ACCOUNT_ROOT=${1%/}"
 
+# Marc - get the account root in a format we can use with `path:`
+PATH_COMPAT_ACCT_ROOT=$(basename "$MAILDIR_ACCOUNT_ROOT")
+
 
 # ----------------------------------------------------------------------
 # MAILBOXES:
@@ -481,12 +484,24 @@ Notmuch_State_To_Maildir__Move_To_Maildir ()
     local THIS_MAILDIR_FULL_PATH="$1"
     local THIS_NOTMUCH_FOLDER="$(Notmuch_Folder_From_Full_Path $THIS_MAILDIR_FULL_PATH)"
     local THIS_NOTMUCH_TAG="$(Notmuch_Tag_From_Full_Path $THIS_MAILDIR_FULL_PATH)"
+    # (marc) - limit search to the account in question, in case we share tags
+    # (e.g. "INBOX", instead of "personal/INBOX" and "work/INBOX")
     local THESE_MESSAGE_IDS_TO_COPY="$(\
         notmuch search --output=messages\
         tag:"$THIS_NOTMUCH_TAG" \
+        AND path:"$PATH_COMPAT_ACCT_ROOT"/** \
         NOT folder:"$THIS_NOTMUCH_FOLDER" \
         NOT folder:"$TRASH" \
         NOT tag:"$NEW_TAG")"
+
+    # echo MAILBOX_FULL_PATH=$MAILBOX_FULL_PATH
+    # echo MAILDIR_ACCOUNT_ROOT=$MAILDIR_ACCOUNT_ROOT
+    # echo THIS_MAILDIR_FULL_PATH=$THIS_MAILDIR_FULL_PATH
+    # echo THIS_NOTMUCH_FOLDER=$THIS_NOTMUCH_FOLDER
+    # echo THIS_NOTMUCH_TAG=$THIS_NOTMUCH_TAG
+    # echo THESE_MESSAGE_IDS_TO_COPY=$THESE_MESSAGE_IDS_TO_COPY
+
+    # exit 1
 
     # We are running this function prior to the remove function below
     # but there is still the edge case wherein the user has manually
@@ -653,6 +668,7 @@ Maildir_State_To_Notmuch__Remove_Tags_From_Notmuch ()
     local THIS_NOTMUCH_FOLDER="$(Notmuch_Folder_From_Full_Path $THIS_MAILDIR_FULL_PATH)"
     local THIS_NOTMUCH_TAG="$(Notmuch_Tag_From_Full_Path $THIS_MAILDIR_FULL_PATH)"
     local THIS_NOTMUCH_QUERY="tag:\"$THIS_NOTMUCH_TAG\" \
+                              AND path:\"$PATH_COMPAT_ACCT_ROOT\"/** \
                               NOT folder:\"$THIS_NOTMUCH_FOLDER\" \
                               NOT folder:\"$TRASH\""
     local THIS_COUNT="$(notmuch count $THIS_NOTMUCH_QUERY)"
@@ -678,10 +694,11 @@ Notmuch_Cleanup ()
     fi
 
     # remove "$NEW_TAG" tags, optionally converting to "$UNREAD_TAG"
+    # (marc) only for the current account, not all accounts
     case $MAKE_NEW_UNREAD in
         true|TRUE|yes|YES|y|Y)
-            $RUNCMD "notmuch tag -\"$NEW_TAG\" +\"$UNREAD_TAG\" -- tag:\"$NEW_TAG\"" ;;
-        *)  $RUNCMD "notmuch tag -\"$NEW_TAG\" -- tag:\"$NEW_TAG\"" ;;
+            $RUNCMD "notmuch tag -\"$NEW_TAG\" +\"$UNREAD_TAG\" -- tag:\"$NEW_TAG\" AND path:\"$PATH_COMPAT_ACCT_ROOT\"/**" ;;
+        *)  $RUNCMD "notmuch tag -\"$NEW_TAG\" -- tag:\"$NEW_TAG\" AND path:\"$PATH_COMPAT_ACCT_ROOT\"/**";;
     esac
 
 }
@@ -698,6 +715,7 @@ echo "$(basename $0) ${SUBCMD}-sync hook ${DRYRUN_MSG:-}"
 echo "----------------------------------------------------------------------"
 echo "NOTMUCH ROOT: $NOTMUCH_ROOT"
 echo "ACCOUNT ROOT: $MAILDIR_ACCOUNT_ROOT"
+echo "PATH COMPAT ACCT ROOT: $PATH_COMPAT_ACCT_ROOT"
 
 # Review the notmuch database state and sync up any changes first
 # (e.g. any retagged messages that need refiling)

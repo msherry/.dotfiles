@@ -1,0 +1,5 @@
+#!/bin/bash -x
+
+# Separate personal and work emails
+notmuch tag +affirm "path:marc.sherry@affirm.com/** AND NOT tag:affirm"
+notmuch tag +personal "path:msherry@gmail.com/** AND NOT tag:personal"

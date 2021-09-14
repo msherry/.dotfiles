@@ -27,6 +27,7 @@ path=/Users/marcsherry/Maildir
 [user]
 name=Marc Sherry
 primary_email=marc.sherry@affirm.com
+other_email=msherry@gmail.com
 
 # Configuration for "notmuch new"
 #
@@ -43,7 +44,9 @@ primary_email=marc.sherry@affirm.com
 #		in the mail store.
 #
 [new]
-tags=unread;INBOX;new;
+# TODO: (marc) not sure why we need the INBOX tag here (messages in the INBOX
+# directory should get INBOX tags), but this doesn't work without this yet
+tags=unread;new;INBOX
 ignore=
 
 # Search configuration

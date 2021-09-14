@@ -34,9 +34,20 @@ function merge_tag_search () {
     echo -n "$merged"
 }
 
+# Separate personal and work emails
+notmuch tag +affirm "path:marc.sherry@affirm.com/** AND tag:new"
+notmuch tag +personal "path:msherry@gmail.com/** AND tag:new"
 
+# Flag Affirm Phabricator messages where we're a reviewer
+notmuch tag +flagged 'tag:new AND tag:affirm AND "reviewer(@marc.sherry)"'
+
+# Mark entire threads as flagged, not just individual messages
 notmuch tag +thread_flagged $(notmuch search --output=threads tag:flagged and not tag:thread_flagged) || true
-# Ensure all messages in a muted thread are muted
-notmuch tag +muted $(merge_tag_search tag:muted tag:INBOX) || true
-# Mark muted messages as read
-notmuch tag -INBOX $(merge_tag_search tag:muted tag:INBOX) || true
+# # Ensure all messages in a muted thread are muted
+# notmuch tag +muted $(merge_tag_search tag:muted tag:INBOX) || true
+# # Mark muted messages as read
+# notmuch tag -INBOX $(merge_tag_search tag:muted tag:INBOX) || true
+
+
+# New tag is removed in maildir-notmuch-sync's cleanup, no need to remove it here
+# notmuch tag -new "tag:new"

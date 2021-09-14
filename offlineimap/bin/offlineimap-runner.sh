@@ -94,10 +94,17 @@ should_sync()
 
 do_sync()
 {
-    # Trailing `echo` command because offlineimap often returns some random
-    # error when it finishes syncing
-    # $TIMEOUT --foreground --signal=KILL $MAX_RUN_TIME bash -c 'offlineimap -o; echo'
-    $TIMEOUT --foreground --signal=KILL $MAX_RUN_TIME bash -c 'offlineimap -o'
+    # local MAILDIR_ROOT=$(grep "^path" ~/.notmuch-config | sed s/"path=[ ]*"//)
+    # local ACCT_STR=$(grep "^accounts" ~/.offlineimaprc |sed s/"accounts =[ ]*"//)
+    # local ACCOUNTS=(${ACCT_STR//,/ })
+    # for _acct in "${ACCOUNTS[@]}"; do
+    #     echo $_acct
+    #     if ! [ -e "$MAILDIR_ROOT"/"$_acct"/canary ]; then
+    #         echo "No canary file found for $_acct ($MAILDIR_ROOT/$_acct/canary), please check that maildirs are mounted"
+    #         exit 1
+    #     fi
+    # done
+    $TIMEOUT --foreground --signal=KILL $MAX_RUN_TIME bash -c "offlineimap -o"
 }
 
 while true; do
