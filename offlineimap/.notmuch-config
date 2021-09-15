@@ -45,7 +45,8 @@ other_email=msherry@gmail.com
 #
 [new]
 # TODO: (marc) not sure why we need the INBOX tag here (messages in the INBOX
-# directory should get INBOX tags), but this doesn't work without this yet
+# directory should get INBOX tags automatically), but this doesn't work without
+# this yet
 tags=unread;INBOX;new;
 ignore=
 

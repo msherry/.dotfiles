@@ -5,6 +5,9 @@ TIMEOUT=gtimeout
 # The file at this location will be updated by an external process (e.g. emacs)
 # to indicate that a sync is required
 UPDATE_FILE_PATH=/tmp/offlineimap_sync_required
+
+MAILDIR_IMAGE_FILE=~/Dropbox/Mail/Maildir.sparsebundle
+
 SECS_BETWEEN_SYNCS=$(( 3 * 60 ))
 FAILURE_WAIT_SECS=60
 MAX_RUN_TIME=5m
@@ -94,16 +97,13 @@ should_sync()
 
 do_sync()
 {
-    # local MAILDIR_ROOT=$(grep "^path" ~/.notmuch-config | sed s/"path=[ ]*"//)
-    # local ACCT_STR=$(grep "^accounts" ~/.offlineimaprc |sed s/"accounts =[ ]*"//)
-    # local ACCOUNTS=(${ACCT_STR//,/ })
-    # for _acct in "${ACCOUNTS[@]}"; do
-    #     echo $_acct
-    #     if ! [ -e "$MAILDIR_ROOT"/"$_acct"/canary ]; then
-    #         echo "No canary file found for $_acct ($MAILDIR_ROOT/$_acct/canary), please check that maildirs are mounted"
-    #         exit 1
-    #     fi
-    # done
+    for _acct_root in $(grep localfolders ~/.offlineimaprc |cut -f2 -d'='); do
+        _root="${_acct_root/#\~/$HOME}" # expand ~ without using eval
+        if ! [ -e "$_root/canary" ]; then
+            echo "No canary file found for $_root ($_root/canary), please check that maildirs are mounted"
+            exit 1
+        fi
+    done
     $TIMEOUT --foreground --signal=KILL $MAX_RUN_TIME bash -c "offlineimap -o"
 }
 
@@ -118,6 +118,8 @@ while true; do
         last_min_remaining=$min_remaining
         sleep 7
     done
+    # TODO: Check if the maildir image is mounted, mount it
+
     # Sync. If we succeed, updated our last sync'd time so we schedule a new
     # sync in SECS_BETWEEN_SYNCS seconds. If we fail, update our last sync'd
     # time to FAILURE_WAIT_SECS seconds before a new sync is due, so we try
