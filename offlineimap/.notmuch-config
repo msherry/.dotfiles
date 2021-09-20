@@ -44,7 +44,8 @@ other_email=msherry@gmail.com
 #		in the mail store.
 #
 [new]
-tags=unread;new;
+# TODO: wtf, still not working without this?
+tags=unread;INBOX;new;
 ignore=
 
 # Search configuration

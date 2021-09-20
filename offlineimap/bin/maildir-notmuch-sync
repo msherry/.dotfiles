@@ -692,7 +692,8 @@ Notmuch_Cleanup ()
 
     # anything in sent mail should have the unread (TODO: (marc) and INBOX?) flag removed
     $RUNCMD "notmuch tag -\"$UNREAD_TAG\" -- folder:\"$SENT\" and path:\"$PATH_COMPAT_ACCT_ROOT/**\""
-    $RUNCMD "notmuch tag -\"INBOX\" -- folder:\"$SENT\" and path:\"$PATH_COMPAT_ACCT_ROOT/**\""
+    # TODO: should this check the sent tag, not the sent folder?
+    $RUNCMD "notmuch tag -\"$INBOX\" -- folder:\"$SENT\" and path:\"$PATH_COMPAT_ACCT_ROOT/**\""
 
     # FIXME pass CLEANUP_SCRIPT as an argument
     if [[ -e "$CLEANUP_SCRIPT" ]]; then
