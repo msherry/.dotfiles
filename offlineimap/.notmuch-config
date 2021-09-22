@@ -46,7 +46,7 @@ other_email=msherry@gmail.com
 [new]
 # TODO: wtf, still not working without this?
 tags=unread;INBOX;new;
-ignore=
+ignore=Maildir.sparsebundle
 
 # Search configuration
 #
