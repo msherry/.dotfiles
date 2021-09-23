@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 # ----------------------------------------------------------------------
 # maildir-notmuch-sync
@@ -574,8 +574,6 @@ Notmuch_State_To_Maildir__Remove_From_Maildir ()
         NOT tag:"$THIS_NOTMUCH_TAG" \
         NOT tag:"$NEW_TAG")"
 
-    echo "THESE_MESSAGE_IDS_TO_REMOVE: $THESE_MESSAGE_IDS_TO_REMOVE"
-
     for THIS_MESSAGE_ID in $THESE_MESSAGE_IDS_TO_REMOVE; do
 
         local THIS_MESSAGE_PATH="$(notmuch search --output=files "$THIS_MESSAGE_ID" | \
@@ -722,15 +720,11 @@ echo "$(basename $0) ${SUBCMD}-sync hook ${DRYRUN_MSG:-}"
 echo "----------------------------------------------------------------------"
 echo "NOTMUCH ROOT: $NOTMUCH_ROOT"
 echo "ACCOUNT ROOT: $MAILDIR_ACCOUNT_ROOT"
-echo "PATH COMPAT ACCT ROOT: $PATH_COMPAT_ACCT_ROOT"
 
 # Review the notmuch database state and sync up any changes first
 # (e.g. any retagged messages that need refiling)
 if [ "$SUBCMD" == "pre" ]; then
-    echo "WE'RE IN PRE"
-    echo "PRE: ITERATING $MAILBOXES_FULL_PATHS"
     for MAILBOX_FULL_PATH in $MAILBOXES_FULL_PATHS; do
-        echo "PRE: $MAILBOX_FULL_PATH"
         Notmuch_State_To_Maildir__Move_To_Maildir $MAILBOX_FULL_PATH
         Notmuch_State_To_Maildir__Remove_From_Maildir $MAILBOX_FULL_PATH
     done
@@ -739,12 +733,9 @@ fi
 # Update the notmuch database to reflect the changes we just made,
 # if any (so it can find the new messages)
 if [ "$SUBCMD" == "post" ]; then
-    echo "WE'RE IN POST"
     Notmuch_Update
 
-    echo "POST: ITERATING $MAILBOXES_FULL_PATHS"
     for MAILBOX_FULL_PATH in $MAILBOXES_FULL_PATHS; do
-        echo "POST: $MAILBOX_FULL_PATH"
         Maildir_State_To_Notmuch__Add_Tags_To_Notmuch $MAILBOX_FULL_PATH
         Maildir_State_To_Notmuch__Remove_Tags_From_Notmuch $MAILBOX_FULL_PATH
     done
