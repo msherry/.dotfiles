@@ -10,6 +10,11 @@
 # results found in the other search. Thus, we make each search separately and
 # find common threads. From https://unix.stackexchange.com/a/398143/129055
 
+
+# UPDATE: it looks like the syntax we need is more complicated, because
+# tag:muted will apply to previous messages, not the ones with tag:INBOX, so we
+# need to intersect threads. Same idea as our merge_tag_search, but notmuch
+# supports it natively
 function merge_tag_search () {
     local first=1
     local res=
@@ -43,11 +48,11 @@ notmuch tag +flagged 'tag:new AND tag:affirm AND "reviewer(@marc.sherry)"'
 
 # Mark entire threads as flagged, not just individual messages
 notmuch tag +thread_flagged $(notmuch search --output=threads tag:flagged and not tag:thread_flagged) || true
-# # Ensure all messages in a muted thread are muted
-# notmuch tag +muted $(merge_tag_search tag:muted tag:INBOX) || true
-# # Mark muted messages as read
-# notmuch tag -INBOX $(merge_tag_search tag:muted tag:INBOX) || true
 
+# Ensure all messages in a muted thread are muted. Uses thread:{} search
+# because the muted message is presumably out of the INBOX already, so we need
+# to find the associated thread instead.
+notmuch tag -INBOX thread:"{tag:INBOX}" and thread:"{tag:muted}"
 
 # New tag is removed in maildir-notmuch-sync's cleanup, no need to remove it here
 # notmuch tag -new "tag:new"
