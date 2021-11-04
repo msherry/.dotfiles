@@ -46,8 +46,8 @@ notmuch tag +personal "path:msherry@gmail.com/** AND tag:new"
 # Flag Affirm Phabricator messages where we're a reviewer
 notmuch tag +flagged 'tag:new AND tag:affirm AND "reviewer(@marc.sherry)"'
 
-# Mark entire threads as flagged, not just individual messages
-notmuch tag +thread_flagged $(notmuch search --output=threads tag:flagged and not tag:thread_flagged) || true
+# # Mark entire threads as flagged, not just individual messages
+# notmuch tag +thread_flagged $(notmuch search --output=threads tag:flagged and not tag:thread_flagged) || true
 
 # Ensure all messages in a muted thread are muted. Uses thread:{} search
 # because the muted message is presumably out of the INBOX already, so we need
