@@ -33,3 +33,5 @@ alias unfuck="sudo rm -rf /Library/Managed\ Preferences/msherry && sudo pkill -9
 
 # Find parent branch of current git branch. From https://stackoverflow.com/a/17843908/52550
 alias parent="git show-branch | grep '*' | grep -v \"$(git rev-parse --abbrev-ref HEAD)\" | head -n1| sed 's/.*\[\(.*\)\].*/\1/' | sed 's/[\^^~].*//'"
+
+alias rebase_master='CUR_BRANCH=$(git branch --show-current) && git checkout master && git pull && git checkout $CUR_BRANCH   && sleep 10 && git rebase master'

@@ -8,7 +8,7 @@ UPDATE_FILE_PATH=/tmp/offlineimap_sync_required
 
 MAILDIR_IMAGE_FILE=~/Dropbox/Mail/Maildir.sparsebundle
 
-SECS_BETWEEN_SYNCS=$(( 3 * 60 ))
+SECS_BETWEEN_SYNCS=$(( 5 * 60 ))
 FAILURE_WAIT_SECS=60
 MAX_RUN_TIME=5m
 

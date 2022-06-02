@@ -44,7 +44,7 @@ notmuch tag +affirm "path:marc.sherry@affirm.com/** AND tag:new"
 notmuch tag +personal "path:msherry@gmail.com/** AND tag:new"
 
 # Flag Affirm Phabricator messages where we're a reviewer
-notmuch tag +flagged 'tag:new AND tag:affirm AND "reviewer(@marc.sherry)"'
+notmuch tag +flagged 'tag:new AND tag:affirm AND ("reviewer(@marc.sherry)" or "(reviewer(#fraud_investigations))")'
 
 # # Mark entire threads as flagged, not just individual messages
 # notmuch tag +thread_flagged $(notmuch search --output=threads tag:flagged and not tag:thread_flagged) || true

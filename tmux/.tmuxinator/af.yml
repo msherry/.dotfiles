@@ -36,7 +36,8 @@ windows:
       - . ~/src/all-the-things/deployable/meta/src/.venv3/bin/activate
       - # "See https://readme.affirm-dev.com/py/all-the-things/latest/deploy.html for deploy instructions"
   - offlineimap:
-      offlineimap-runner.sh
+      - cd ~/Maildir
+      - offlineimap-runner.sh
   - sherlock:
       # layout: main-horizontal
       layout: layout b9cd,208x52,0,0[208x8,0,0,3,208x44,0,9,8]
