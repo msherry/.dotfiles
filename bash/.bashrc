@@ -201,3 +201,4 @@ export PATH=/usr/local/share/john/:$PATH
 if [ -e ~/bin/arcanist/bin ]; then
     export PATH=~/bin/arcanist/bin:$PATH
 fi
+export PATH=/usr/local/opt/openssl@1.0.2t/bin:$PATH

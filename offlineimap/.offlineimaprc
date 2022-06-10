@@ -19,7 +19,7 @@ quick = 10
 presynchook = ~/bin/maildir-notmuch-sync pre ~/Maildir/msherry@gmail.com
 postsynchook = ~/bin/maildir-notmuch-sync post ~/Maildir/msherry@gmail.com; emacsclient --eval '(display-time-update)' > /dev/null
 # Only sync messages newer than this many days. Comment this out during initial sync!
-maxage = 30
+maxage = 15
 
 [Repository personal-local]
 type = GmailMaildir
@@ -73,7 +73,7 @@ quick = 10
 presynchook = ~/bin/maildir-notmuch-sync pre ~/Maildir/marc.sherry@affirm.com
 postsynchook = ~/bin/maildir-notmuch-sync post ~/Maildir/marc.sherry@affirm.com; emacsclient --eval '(display-time-update)' > /dev/null
 # Only sync messages newer than this many days. Comment this out during initial sync!
-maxage = 30
+maxage = 15
 
 
 [Repository affirm-local]
