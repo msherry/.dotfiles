@@ -5,7 +5,7 @@
 [general]
 # List of accounts to be synced, separated by a comma.
 accounts = affirm,personal
-socktimeout = 60
+socktimeout = 90
 fsync = false
 pythonfile = ~/.offlineimap.py
 
@@ -48,6 +48,7 @@ nametrans = lambda foldername: {
     'Tracking': 'tracking',
     '[Gmail]/Sent Mail': 'sent'}.get(foldername, foldername)
 sslcacertfile = /usr/local/etc/openssl/cert.pem
+holdconnectionopen = yes
 
 
 [Account affirm]
@@ -101,6 +102,7 @@ remoteuser = marc.sherry@affirm.com
 remotepasseval = get_password_emacs("marc.sherry@affirm.com", "imap.gmail.com", "993")
 maxconnections = 3
 singlethreadperfolder = no
+holdconnectionopen = yes
 
 # folderfilter = lambda foldername: foldername not in {
 #     'Crashlytics', 'Workflows', '[Gmail]/Trash', '[Gmail]/Spam', '[Gmail]/Drafts', 'TODO', 'Flawless',

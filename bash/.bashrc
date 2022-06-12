@@ -13,7 +13,7 @@ fi
 
 # Python virtualenv stuff
 if [ -e /usr/local/bin/virtualenvwrapper.sh ]; then
-    source /usr/local/bin/virtualenvwrapper_lazy.sh
+    source /usr/local/bin/virtualenvwrapper.sh
 fi
 
 # cache pip-installed packages to avoid re-downloading
@@ -73,10 +73,10 @@ fi
 # for use in the prompt later
 git_branch () {
     # git >= 2.22
-    git branch --show-current 2>/dev/null | sed -e 's/\(.*\)/(\1)/'
+    # git branch --show-current 2>/dev/null | sed -e 's/\(.*\)/(\1)/'
 
     # older
-    # git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
 export -f git_branch
 

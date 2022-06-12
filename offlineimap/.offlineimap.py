@@ -13,4 +13,4 @@ def get_output(cmd):
 def get_password_emacs(user, host, port):
     cmd = ('emacsclient --eval \'(offlineimap-get-password '
            '"%s" "%s" "%s")\'' % (user, host, port))
-    return get_output(cmd).strip().lstrip('"').rstrip('"')
+    return get_output(cmd).strip().lstrip(b'"').rstrip(b'"')
