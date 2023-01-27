@@ -1,0 +1,3 @@
+# https://github.com/Rdatatable/data.table/wiki/Installation#openmp-enabled-compiler-for-mac
+CPPFLAGS += -Xclang -fopenmp
+LDFLAGS += -lomp
